@@ -1,0 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@700;800;900&family=Roboto:wght@300;400;500;700&display=swap');
+@import '_normalize';
+@import '_variable';
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    font-family: $font-family;
+    color: $default;
+    font-size: 1em;
+    letter-spacing: .3px;
+}
