@@ -1,0 +1,47 @@
+{
+    "products": [
+        {
+            "id": 1,
+            "img": "Air Jordan XXXVI SE Luka 'Global Game'.png",
+            "name": "Air Jordan XXXVI SE Luka 'Global Game'",
+            "color": "Colour: Blue Jay/Mardi Gras/White",
+            "price": "₱5,295.00"
+        },
+        {
+            "id": 2,
+            "img": "Jordan Jumpman 2021 PF.png",
+            "name": "Jordan Jumpman 2021 PF",
+            "color": "Colour: White/University Red/Black",
+            "price": "₱5,895.00"
+        },
+        {
+            "id": 3,
+            "img": "Jordan One Take II PF.png",
+            "name": "Jordan One Take II PF",
+            "color": "Colour: White/University Red/Black/University Red",
+            "price": "₱3,569",
+            "discounted_price": "₱5,095"
+        },
+        {
+            "id": 4,
+            "img": "Nike Air Max Camden.png",
+            "name": "Nike Air Max Camden",
+            "color": "Colour:  Summit Black/Chile Green",
+            "price": "₱2,295.00"
+        },
+        {
+            "id": 5,
+            "img": "Nike Revolution 5.png",
+            "name": "Nike Revolution 5",
+            "color": "Colour:  Summit White/Metallic Gold/Black/Chile Red",
+            "price": "₱2,895.00"
+        },
+        {
+            "id": 6,
+            "img": "Nike Revolution 5 (Baby and Toddler Shoe).png",
+            "name": "Nike Revolution 5 (Baby and Toddler Shoe)",
+            "color": "Colour:  Midnight Navy/Orange/White",
+            "price": "₱2,295.00"
+        }
+    ]
+}

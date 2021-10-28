@@ -69,6 +69,7 @@
   justify-content: space-between;
   position: sticky;
   top: 15px;
+  z-index: 1;
 
   .nav-links {
     list-style: none;
@@ -169,7 +170,7 @@ import {
 } from "vue-feather-icons";
 
 export default {
-  name: "Sidebar",
+  name: "Navbar",
   components: {
     SearchIcon,
     HeartIcon,
