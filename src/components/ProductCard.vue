@@ -41,7 +41,7 @@
 </template>
 
 <style lang="scss">
-@import "../assets/scss/_variable.scss";
+@import "../assets/scss/_variable";
 
 .product-card {
   width: 380px;

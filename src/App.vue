@@ -1,5 +1,5 @@
 <template>
-  <div id="app" class="container-fluid">
+  <div id="app">
     <Navbar />
     <router-view />
   </div>
@@ -16,10 +16,10 @@ export default {
 </script>
 
 <style lang="scss">
-@import "assets/scss/_variable.scss";
+@import "assets/scss/_style.scss";
 
 .container-fluid {
-  margin: 15px 6%;
+  margin: 0px $margin-side;
 }
 
 .btn {

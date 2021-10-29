@@ -1,28 +1,30 @@
 <template>
-  <header class="hero">
-    <div class="row">
-      <div class="col">
-        <h1 class="hero-headline">NIKE, JUST <br />DO IT.</h1>
-        <p class="hero-subheadline">More Sport, More Inspiration, More Nike!</p>
-        <br />
-        <Button text="Get Your Get &nbsp; &rarr;" />
-      </div>
-      <div class="col">
-        <div class="hero-banner">
-          <div class="hero-image">
-            <img :src="shoe" :alt="shoe" width="739" height="633" />
-            <img
-              :src="ellipse"
-              :alt="ellipse"
-              id="ellipse"
-              width="500"
-              height="500"
-            />
-          </div>
-          <div class="hero-colors">
-            <ButtonCircle color="background-color: #111111;" selected="1" />
-            <ButtonCircle color="background-color: #FF4D00;" />
-            <ButtonCircle color="background-color: #072C4D;" />
+  <header class="container-fluid">
+    <div class="hero">
+      <div class="row">
+        <div class="col">
+          <h1 class="hero-headline">NIKE, JUST <br />DO IT.</h1>
+          <p class="hero-subheadline">More Sport, More Inspiration, More Nike!</p>
+          <br />
+          <Button text="Get Your Get &nbsp; &rarr;" />
+        </div>
+        <div class="col">
+          <div class="hero-banner">
+            <div class="hero-image">
+              <img :src="shoe" :alt="shoe" width="739" height="633" />
+              <img
+                :src="ellipse"
+                :alt="ellipse"
+                id="ellipse"
+                width="500"
+                height="500"
+              />
+            </div>
+            <div class="hero-colors">
+              <ButtonCircle color="background-color: #111111;" selected="1" />
+              <ButtonCircle color="background-color: #FF4D00;" />
+              <ButtonCircle color="background-color: #072C4D;" />
+            </div>
           </div>
         </div>
       </div>
@@ -31,7 +33,7 @@
 </template>
 
 <style lang="scss">
-@import "../../assets/scss/_variable.scss";
+@import "../../assets/scss/_variable";
 
 .row {
   display: flex;

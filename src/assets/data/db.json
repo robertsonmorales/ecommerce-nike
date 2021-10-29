@@ -1,5 +1,5 @@
 {
-    "products": [
+    "featured_footwear": [
         {
             "id": 1,
             "img": "Air Jordan XXXVI SE Luka 'Global Game'.png",
@@ -42,6 +42,32 @@
             "name": "Nike Revolution 5 (Baby and Toddler Shoe)",
             "color": "Colour:  Midnight Navy/Orange/White",
             "price": "₱2,295.00"
+        }
+    ],
+    "latest_release": [
+        {
+            "id": 1,
+            "img": "Nike Air Max 5.png",
+            "name": "Nike Air Max 5",
+            "price": "₱3,228.29",
+            "width": 435.97,
+            "height": 448.89
+        },
+        {
+            "id": 2,
+            "img": "Nike Air Foce 5.png",
+            "name": "Nike Air Max 5",
+            "price": "₱3,228.29",
+            "width": 600,
+            "height": 625.57
+        },
+        {
+            "id": 3,
+            "img": "Nike Air Max 95.png",
+            "name": "Nike Air Max 5",
+            "price": "₱3,228.29",
+            "width": 536.93,
+            "height": 592.57
         }
     ]
 }
