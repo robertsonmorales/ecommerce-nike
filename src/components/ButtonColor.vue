@@ -14,7 +14,7 @@
 </template>
 
 <style lang="scss">
-@import "../assets/scss/_variable.scss";
+@import "../assets/scss/_variable";
 
 .btn-circle {
   width: 45px;

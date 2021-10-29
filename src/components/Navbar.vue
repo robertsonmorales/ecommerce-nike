@@ -61,15 +61,17 @@
 </template>
 
 <style lang="scss">
-@import "../assets/scss/style.scss";
+@import "../assets/scss/_style.scss";
 
 .navbar {
+  background-color: #fff;
   display: flex;
   align-items: center;
   justify-content: space-between;
   position: sticky;
-  top: 15px;
+  top: 0px;
   z-index: 1;
+  padding: 15px $margin-side;
 
   .nav-links {
     list-style: none;

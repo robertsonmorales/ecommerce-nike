@@ -14,3 +14,14 @@ body{
     font-size: 1em;
     letter-spacing: .3px;
 }
+
+.subheadline {
+    text-align: center;
+    padding: 30px 0 !important;
+
+    h4 {
+      margin-bottom: 10px;
+      letter-spacing: 0.1em;
+      font-size: 20px;
+    }
+}

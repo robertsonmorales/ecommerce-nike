@@ -1,43 +1,36 @@
 <template>
-  <div class="featured-footwear">
-    <div class="subheadline">
-      <h4>FEATURED FOOTWEAR</h4>
-      <img src="../../assets/images/line.svg" alt="Line" />
-    </div>
+  <div class="container-fluid">
+    <div class="featured-footwear">
+      <div class="subheadline">
+        <h4>FEATURED FOOTWEAR</h4>
+        <img src="../../assets/images/line.svg" alt="Line" />
+      </div>
 
-    <div class="card-group">
-      <ProductCard
-        v-for="product in products"
-        :key="product.id"
-        :img="product.img"
-        :name="product.name"
-        :price="product.price"
-        :color="product.color"
-      />
-    </div>
+      <div class="card-group">
+        <ProductCard
+          v-for="product in products"
+          :key="product.id"
+          :img="product.img"
+          :name="product.name"
+          :price="product.price"
+          :color="product.color"
+        />
+      </div>
 
-    <div class="load-more">
-      <button type="button" class="btn btn-primary btn-load-more">
-        Load More
-      </button>
+      <div class="load-more">
+        <button type="button" class="btn btn-primary btn-load-more">
+          Load More
+        </button>
+      </div>
     </div>
   </div>
 </template>
 
 <style lang="scss">
-@import "../../assets/scss/_variable.scss";
+@import "../../assets/scss/_variable";
 
 .featured-footwear {
-  .subheadline {
-    text-align: center;
-    margin-bottom: 30px;
-
-    h4 {
-      margin-bottom: 10px;
-      letter-spacing: 0.1em;
-      font-size: 20px;
-    }
-  }
+  margin-bottom: 52px;
 
   .card-group {
     display: grid;
@@ -67,7 +60,7 @@ export default {
     };
   },
   created() {
-    axios.get("http://localhost:3000/products").then((res) => {
+    axios.get("http://localhost:3000/featured_footwear").then((res) => {
       this.products = res.data;
     });
   },
