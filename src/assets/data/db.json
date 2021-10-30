@@ -50,8 +50,9 @@
             "img": "Nike Air Max 5.png",
             "name": "Nike Air Max 5",
             "price": "₱3,228.29",
-            "width": 435.97,
-            "height": 448.89
+            "width": 600,
+            "height": 625.57,
+            "style": ""
         },
         {
             "id": 2,
@@ -59,15 +60,17 @@
             "name": "Nike Air Max 5",
             "price": "₱3,228.29",
             "width": 600,
-            "height": 625.57
+            "height": 625.57,
+            "style": "margin: 0 -15%;"
         },
         {
             "id": 3,
             "img": "Nike Air Max 95.png",
             "name": "Nike Air Max 5",
             "price": "₱3,228.29",
-            "width": 536.93,
-            "height": 592.57
+            "width": 600,
+            "height": 625.57,
+            "style": ""
         }
     ]
 }
