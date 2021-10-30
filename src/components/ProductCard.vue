@@ -45,6 +45,7 @@
 
 .product-card {
   width: 380px;
+  min-width: 100%;
   border-radius: $radius;
   overflow: hidden;
   border: 1px solid #eeeeee;

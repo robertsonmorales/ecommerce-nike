@@ -5,16 +5,15 @@
             <img src="../../assets/images/line2.svg" alt="Line" />
         </div>
 
-        <div class="container-fluid">
-            <div class="latest-releases-content">
-                <LatestShoes v-for="latest in latests"
-                    :key="latest.id"
-                    :img="latest.img"
-                    :name="latest.name"
-                    :price="latest.price"
-                    :width="latest.width"
-                    :height="latest.height" />
-            </div>
+        <div class="latest-releases-content">
+            <LatestShoes v-for="latest in latests"
+                :key="latest.id"
+                :img="latest.img"
+                :name="latest.name"
+                :price="latest.price"
+                :width="latest.width"
+                :height="latest.height"
+                :customStyle="latest.style" />
         </div>
     </div>
 </template>
@@ -32,6 +31,8 @@
     .latest-releases-content{
         display: flex;
         align-items: center;
+        justify-content: center;
+        margin: 0 6%;
     }
 }
 
@@ -54,8 +55,6 @@ export default {
     created(){
         axios.get("http://localhost:3000/latest_release")
             .then((response) => {
-                // console.log(response.data);
-
                 this.latests = response.data;
             });
     }

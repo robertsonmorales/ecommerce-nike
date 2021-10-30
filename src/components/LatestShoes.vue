@@ -1,5 +1,5 @@
 <template>
-    <div class="release">
+    <div :style="customStyle" class="release">
         <img
           :src="require(`../assets/images/products/latest_releases/${img}`)"
           :alt="name"
@@ -10,33 +10,47 @@
         <div class="details">
             <h4 class="product-name">{{ name }}</h4>
             <p class="product-price">{{ price }}</p>
+
+            <button class="btn btn-light btn-buynow">Buy Now</button>
         </div>
     </div>
 </template>
 
 <style lang="scss">
-    .release{
+@import "../assets/scss/_variable";
+
+.release{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+
+    .details{
+        margin-top: -25%;
         display: flex;
         flex-direction: column;
         align-items: center;
+        justify-content: flex-end;
 
-        .details{
-            margin-top: -25%;
+        .product-name{
+            margin-bottom: 15px;
+            font-weight: 500;
+            font-style: normal;
+            font-size: 24px;
+        }
 
-            .product-name{
-                margin-bottom: 15px;
-                font-weight: 500;
-                font-style: normal;
-                font-size: 24px;
-            }
+        .product-price{
+            font-weight: normal;
+            font-style: normal;
+            font-size: 18px;
+            margin-bottom: 30px;
+        }
 
-            .product-price{
-                font-weight: 700;
-                font-style: normal;
-                font-size: 18px;
-            }
+        .btn-buynow{
+            color: $primary;
         }
     }
+}
 </style>
 
 <script>
@@ -47,7 +61,8 @@ export default {
         name: String,
         price: String,
         width: Number,
-        height: Number
+        height: Number,
+        customStyle: String
     }
 }
 </script>
