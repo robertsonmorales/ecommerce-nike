@@ -1,13 +1,10 @@
 <template>
   <div class="product-card">
     <div class="product-image">
-      <div class="product-tag">
-        <img :src="tag" alt="tag" />
-        <span class="product-label">
-          <tag-icon size="1x" class="tag-icon"></tag-icon>
-          <span>29% off</span>
-        </span>
-      </div>
+
+      <ProductTag v-if="has_discount" 
+        :discount="discounted_price" />
+
       <div class="btn-favorite"></div>
 
       <div class="img-wrapper">
@@ -19,10 +16,12 @@
       </div>
     </div>
     <div class="product-body">
-      <div class="price">{{ price }}</div>
+      <div class="product-price">
+        <span class="discounted-price">{{ discounted_value }}</span><strike v-show="newPrice != discounted_value" class="prev-price">{{ newPrice }}</strike>
+      </div>
       <h4 class="product-name">{{ name }}</h4>
       <p class="product-color">{{ color }}</p>
-
+      
       <div class="customer-feedbacks">
         <div class="star-rate">
           <img :src="starFilled" :alt="starFilled" width="17" height="16" />
@@ -44,6 +43,9 @@
 @import "../assets/scss/_variable";
 
 .product-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   width: 380px;
   min-width: 100%;
   border-radius: $radius;
@@ -56,41 +58,40 @@
     background-color: #f5f5f5;
     padding: 20px 25px;
 
-    .product-tag {
-      display: flex;
-      align-items: center;
-      position: relative;
-
-      .product-label {
-        display: flex;
-        align-items: center;
-        position: absolute;
-        left: 5px;
-        color: #fff;
-
-        .tag-icon {
-          margin-right: 10px;
-        }
-
-        span {
-          font-size: 0.9em;
-          font-weight: 500;
-        }
-      }
-    }
-
     .img-wrapper {
+      overflow: hidden;
       text-align: center;
+      transition: all .3s ease;
     }
   }
 
   .product-body {
     padding: 30px 25px;
 
-    .price {
-      color: $primary;
+    .product-price{
       font-weight: bold;
       margin-bottom: 10px;
+
+      .discounted-price {
+        color: $primary;
+        margin-right: 10px;
+      }
+
+      .prev-price{
+        color: #777;
+      }
+
+      .discounted-price,
+      .prev-price{
+        &::before{
+          content: "₱";
+        }
+
+        &::after{
+          content: ".00";
+        }
+      }
+
     }
 
     .product-name {
@@ -122,13 +123,16 @@
   .product-footer {
     padding: 0 25px 25px 25px;
   }
+
+  &:hover .product-image .img-wrapper{
+    transform: scale(1.1);
+  }
 }
 </style>
 
 <script>
 import CardButtons from "@/components/CardButtons";
-import { TagIcon } from "vue-feather-icons";
-import Tag from "../assets/images/tag.png";
+import ProductTag from "@/components/ProductTag";
 
 import Star from "../assets/images/star.svg";
 import StarFilled from "../assets/images/star-filled.svg";
@@ -136,21 +140,42 @@ import StarFilled from "../assets/images/star-filled.svg";
 export default {
   name: "ProductCard",
   components: {
-    TagIcon,
     CardButtons,
+    ProductTag,
   },
   props: {
     img: String,
     color: String,
     name: String,
     price: String,
+    has_discount: Boolean,
+    discounted_price: String
   },
   data() {
     return {
       star: Star,
       starFilled: StarFilled,
-      tag: Tag,
+      discounted_value: ""
     };
   },
+  created(){
+    var p = this.price; 
+    var d = this.discounted_price.split("").reverse().join("").substring(1);
+        d = d.split("").reverse().join("");
+    
+    var cd = parseFloat((d != "") ? '.' + d : 0); // cleared discount
+    var td = (p * cd); // total discount
+    this.discounted_value = this.commaSeparated(Math.round(p - td));
+  },
+  methods: {
+    commaSeparated: function (val){
+		  return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+	  }
+  },
+  computed: {
+    newPrice: function(){
+      return this.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+    }
+  }
 };
 </script>

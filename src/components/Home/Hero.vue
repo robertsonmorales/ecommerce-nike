@@ -16,8 +16,8 @@
                 :src="ellipse"
                 :alt="ellipse"
                 id="ellipse"
-                width="500"
-                height="500"
+                width="450"
+                height="450"
               />
             </div>
             <div class="hero-colors">
@@ -49,6 +49,7 @@
     margin-top: 0;
     margin-bottom: 15px;
     white-space: nowrap;
+    line-height: 80px;
   }
 
   .hero-subheadline {

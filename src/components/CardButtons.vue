@@ -45,7 +45,7 @@ export default {
   },
   methods: {
     addToCart: function () {
-      alert("1");
+      alert("Added to cart!!!");
     },
   },
 };

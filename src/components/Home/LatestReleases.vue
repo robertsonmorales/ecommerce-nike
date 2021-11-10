@@ -1,5 +1,5 @@
 <template>
-    <div class="latest-releases">
+    <section class="latest-releases">
         <div class="subheadline">
             <h4>LATEST RELEASES</h4>
             <img src="../../assets/images/line2.svg" alt="Line" />
@@ -15,7 +15,10 @@
                 :height="latest.height"
                 :customStyle="latest.style" />
         </div>
-    </div>
+        <br>
+        <br>
+        <br>
+    </section>
 </template>
 
 <style lang="scss">
@@ -25,8 +28,12 @@
     background-color: $primary;
     color: #fff;
     min-height: 793px;
-    padding: 15px 0;
+    padding: 30px 0;
     overflow-x: hidden;
+
+    .subheadline{
+        padding-bottom: 0px !important;
+    }
 
     .latest-releases-content{
         display: flex;
