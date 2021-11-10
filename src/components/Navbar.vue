@@ -64,7 +64,7 @@
 @import "../assets/scss/_style.scss";
 
 .navbar {
-  background-color: #fff;
+  background-color: $body-bg;
   display: flex;
   align-items: center;
   justify-content: space-between;

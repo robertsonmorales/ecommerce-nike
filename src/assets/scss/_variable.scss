@@ -1,9 +1,12 @@
-$font-family: 'Roboto', sans-serif;
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@700;800;900&family=Roboto:wght@300;400;500;700&display=swap');
+@import '_font';
+
+$font-family: 'Google Sans', sans-serif;
 $secondary-family: 'Poppins', sans-serif;
 
+$body-bg: #fafafa;
 $default: #333333;
 $primary: #FF4D00;
 
 $radius: 10px;
-
 $margin-side: 6%;

@@ -1,5 +1,5 @@
 <template>
-  <div class="container-fluid">
+  <section class="container-fluid">
     <div class="featured-footwear">
       <div class="subheadline">
         <h4>FEATURED FOOTWEAR</h4>
@@ -14,6 +14,9 @@
           :name="product.name"
           :price="product.price"
           :color="product.color"
+          :has_discount="product.has_discount"
+          :discounted_price="product.discounted_price"
+
         />
       </div>
 
@@ -23,7 +26,7 @@
         </button>
       </div>
     </div>
-  </div>
+  </section>
 </template>
 
 <style lang="scss">
@@ -63,6 +66,6 @@ export default {
     axios.get("http://localhost:3000/featured_footwear").then((res) => {
       this.products = res.data;
     });
-  },
+  }
 };
 </script>
