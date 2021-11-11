@@ -16,14 +16,15 @@
           :color="product.color"
           :has_discount="product.has_discount"
           :discounted_price="product.discounted_price"
-
+          :rate="product.rate"
+          :reviews="product.reviews"
+          :is_favorite="product.is_favorite"
         />
       </div>
 
       <div class="load-more">
-        <button type="button" class="btn btn-primary btn-load-more">
-          Load More
-        </button>
+        <button type="button" 
+          class="btn btn-primary btn-load-more">Load More</button>
       </div>
     </div>
   </section>

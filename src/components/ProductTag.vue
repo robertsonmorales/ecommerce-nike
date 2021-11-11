@@ -22,10 +22,10 @@
         display: flex;
         align-items: center;
         position: relative;
-        overflow: hidden;
+        // overflow: hidden;
 
         img.tag{
-            filter: drop-shadow(1px 5px 5px rgba(0,0,0,0.15));
+            filter: drop-shadow(1px 1px 5px rgba(0, 0, 0, 0.15))
         }
 
         .product-label {

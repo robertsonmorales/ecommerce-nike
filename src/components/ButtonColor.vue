@@ -1,16 +1,9 @@
 <template>
-  <div
+  <button type="button"
     class="btn-circle"
     :style="color"
-    style="border: 8px solid #fff"
-    v-if="selected == 1"
-  ></div>
-  <div
-    class="btn-circle"
-    :style="color"
-    style="border: 5px solid #fff"
-    v-else
-  ></div>
+    :class="selectedColor"
+  ></button>
 </template>
 
 <style lang="scss">
@@ -20,8 +13,17 @@
   width: 45px;
   height: 45px;
   border-radius: 50%;
-  box-shadow: 10px 10px 30px rgba(0, 0, 0, 0.2);
   margin-bottom: 30px;
+  cursor: pointer;
+}
+
+.selected{
+  border: 8px solid #fff;
+  box-shadow: 10px 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.default{
+  border: 5px solid #fff;
 }
 </style>
 
@@ -29,8 +31,19 @@
 export default {
   name: "ButtonCircle",
   props: {
-    color: String,
-    selected: String,
+    color: {
+      type: String,
+      required: true
+    },
+    selected: {
+      type: Boolean,
+      default: false
+    },
   },
+  computed: {
+    selectedColor: function(){
+      return (this.selected) ? "selected" : "default";
+    }
+  }
 };
 </script>

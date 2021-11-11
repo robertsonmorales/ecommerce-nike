@@ -45,7 +45,18 @@ export default {
   },
   methods: {
     addToCart: function () {
-      alert("Added to cart!!!");
+      this.$toasted.show("Added to cart", { 
+        // type: "success",
+        theme: "outline", 
+        position: "top-center", 
+        duration : 3000,
+        action: {
+          text: "x",
+          onClick: function(e, obj){
+            obj.goAway(0);
+          }
+        }
+      });
     },
   },
 };
