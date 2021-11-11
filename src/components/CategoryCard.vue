@@ -48,8 +48,14 @@
 export default {
     name: "CategoryCard",
     props: {
-        img: String,
-        name: String
+        img: {
+            type: String,
+            required: true
+        },
+        name: {
+            type: String,
+            required: true
+        }
     }
 }
 </script>

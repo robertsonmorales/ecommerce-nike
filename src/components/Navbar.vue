@@ -89,6 +89,7 @@
         transition: all 0.1s ease-in-out;
 
         &.router-link-exact-active {
+          font-weight: 600;
           color: $primary;
           border-bottom: 2px solid $primary;
         }
@@ -111,7 +112,7 @@
 
       .form-control {
         font-family: $font-family;
-        background-color: #eeeeee;
+        background-color: $light;
         border-radius: 10px;
         border: none;
         outline: none;
@@ -119,10 +120,10 @@
         padding-left: 15px;
         padding-right: 45px;
         font-size: 0.9em;
-        transition: background-color 0.2s ease-in-out;
+        transition: all .3s ease;
 
         &:focus {
-          background-color: #ddd;
+          background-color: $light__focused;
         }
       }
 

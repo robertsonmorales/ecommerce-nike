@@ -1,11 +1,9 @@
 <template>
   <header class="container-fluid">
-    <div class="hero">
-      <div class="row">
+    <div class="row">
         <div class="col">
           <h1 class="hero-headline">NIKE, JUST <br />DO IT.</h1>
           <p class="hero-subheadline">More Sport, More Inspiration, More Nike!</p>
-          <br />
           <Button text="Get Your Get &nbsp; &rarr;" />
         </div>
         <div class="col">
@@ -21,14 +19,13 @@
               />
             </div>
             <div class="hero-colors">
-              <ButtonCircle color="background-color: #111111;" selected="1" />
+              <ButtonCircle color="background-color: #111111;" selected />
               <ButtonCircle color="background-color: #FF4D00;" />
               <ButtonCircle color="background-color: #072C4D;" />
             </div>
           </div>
         </div>
       </div>
-    </div>
   </header>
 </template>
 
@@ -41,7 +38,7 @@
   justify-content: space-between;
 
   .hero-headline {
-    font-family: $secondary-family !important;
+    font-family: $secondary-family;
     font-weight: 900;
     font-size: 64px;
     letter-spacing: 0.15em;
@@ -60,6 +57,7 @@
     display: flex;
     align-items: center;
     position: relative;
+    right: 50px;
 
     .hero-image {
       display: flex;
@@ -71,6 +69,9 @@
     .hero-colors {
       position: absolute;
       right: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
   }
 }

@@ -2,10 +2,12 @@
   <div class="product-card">
     <div class="product-image">
 
-      <ProductTag v-if="has_discount" 
+      <ProductTag 
+        v-if="has_discount" 
         :discount="discounted_price" />
 
-      <div class="btn-favorite"></div>
+      <AddToFavorite @add-to-favorite="addAsFavorite"
+        :is_fav="is_favorite" />
 
       <div class="img-wrapper">
         <img
@@ -24,14 +26,19 @@
       
       <div class="customer-feedbacks">
         <div class="star-rate">
-          <img :src="starFilled" :alt="starFilled" width="17" height="16" />
-          <img :src="starFilled" :alt="starFilled" width="17" height="16" />
-          <img :src="starFilled" :alt="starFilled" width="17" height="16" />
-          <img :src="starFilled" :alt="starFilled" width="17" height="16" />
-          <img :src="star" :alt="star" width="17" height="16" />
+          <StarRateReviews
+            v-for="(r, x) in 5"
+            :key="x"
+            :filled="(rate >= (x + 1)) 
+              ? true 
+              : false" />
         </div>
-        <div class="product-sold">1.2k</div>
+
+        <div class="product-sold">
+          {{ formatReviews }} reviews
+        </div>
       </div>
+
     </div>
     <div class="product-footer">
       <CardButtons />
@@ -45,7 +52,6 @@
 .product-card {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   width: 380px;
   min-width: 100%;
   border-radius: $radius;
@@ -53,10 +59,22 @@
   border: 1px solid #eeeeee;
   background-color: #fff;
   filter: drop-shadow(10px 10px 30px rgba(224, 222, 220, 0.7));
+  transition: all .3s ease;
 
   .product-image {
     background-color: #f5f5f5;
     padding: 20px 25px;
+
+    .btn-favorite{
+      outline: none;
+      border: none;
+      background-color: transparent;
+      cursor: pointer;
+      position: absolute;
+      right: 25px;
+      top: 20px;
+      z-index: 1;
+    }
 
     .img-wrapper {
       overflow: hidden;
@@ -97,6 +115,7 @@
     .product-name {
       margin-bottom: 15px;
       font-size: 24px;
+      font-weight: 500;
     }
 
     .product-color {
@@ -110,7 +129,7 @@
       align-items: center;
 
       .star-rate {
-        margin-right: 20px;
+        margin-right: 10px;
       }
 
       .product-sold {
@@ -121,11 +140,16 @@
   }
 
   .product-footer {
+    margin-top: auto;
     padding: 0 25px 25px 25px;
   }
 
-  &:hover .product-image .img-wrapper{
-    transform: scale(1.1);
+  &:hover{
+    filter: drop-shadow(10px 10px 20px rgba(224, 222, 220, 1));
+
+    .product-image .img-wrapper{
+      transform: scale(1.1);
+    }
   }
 }
 </style>
@@ -133,28 +157,57 @@
 <script>
 import CardButtons from "@/components/CardButtons";
 import ProductTag from "@/components/ProductTag";
-
-import Star from "../assets/images/star.svg";
-import StarFilled from "../assets/images/star-filled.svg";
+import AddToFavorite from "@/components/AddToFavorite";
+import StarRateReviews from "@/components/StarRateReviews";
 
 export default {
   name: "ProductCard",
   components: {
     CardButtons,
     ProductTag,
+    StarRateReviews,
+    AddToFavorite
   },
   props: {
-    img: String,
-    color: String,
-    name: String,
-    price: String,
-    has_discount: Boolean,
-    discounted_price: String
+    img: {
+      type: String,
+      required: true,
+    },
+    color: {
+      type: String,
+      required: true
+    },
+    name: {
+      type: String,
+      required: true
+    },
+    price: {
+      type: [String, Number],
+      required: true
+    },
+    has_discount: {
+      type: Boolean,
+      default: false
+    },
+    discounted_price: {
+      type: String,
+      default: ""
+    },
+    rate: {
+      type: Number,
+      required: true
+    },
+    reviews: {
+      type: Number,
+      required: true
+    },
+    is_favorite: {
+      type: Boolean,
+      default: false
+    }
   },
   data() {
     return {
-      star: Star,
-      starFilled: StarFilled,
       discounted_value: ""
     };
   },
@@ -165,16 +218,70 @@ export default {
     
     var cd = parseFloat((d != "") ? '.' + d : 0); // cleared discount
     var td = (p * cd); // total discount
+
     this.discounted_value = this.commaSeparated(Math.round(p - td));
   },
   methods: {
     commaSeparated: function (val){
 		  return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-	  }
+	  },
+    addAsFavorite: function(){
+      if(this.is_favorite){
+        this.$toasted.show("Removed to favorites", { 
+          // type: "success",
+          theme: "outline", 
+          position: "top-center", 
+          duration : 3000,
+          action: {
+            text: "x",
+            onClick: function(e, obj){
+              obj.goAway(0);
+            }
+          }
+        });
+
+        this.is_favorite = false;
+      }else{
+        this.$toasted.show("Added to favorites", { 
+          // type: "success",
+          theme: "outline", 
+          position: "top-center", 
+          duration : 3000,
+          action: {
+            text: "x",
+            onClick: function(e, obj){
+              obj.goAway(0);
+            }
+          }
+        });
+
+        this.is_favorite = true;
+      }
+    }
   },
   computed: {
-    newPrice: function(){
-      return this.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+    newPrice: function() {
+      return this.commaSeparated(this.price);
+    },
+    formatReviews: function(){
+      let review = this.commaSeparated(this.reviews);
+      let splitReview = review.split(",");
+      let reviewsLength = splitReview.length;
+      let formattedReview = "";
+      let unit, hundreds, thousands;
+      
+      if(reviewsLength == 1){
+        formattedReview = this.reviews;
+      }else if(reviewsLength == 2){ // K
+        unit = "K";
+        hundreds = (splitReview[1].charAt(0) == 0) ? "" : splitReview[1].charAt(0);
+        hundreds = (hundreds == "") ? "" : "." + hundreds;
+        thousands = splitReview[0];
+
+        formattedReview = thousands + hundreds + unit;
+      }
+
+      return formattedReview;
     }
   }
 };

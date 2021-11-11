@@ -10,7 +10,10 @@
 export default {
   name: "Button",
   props: {
-    text: String,
+    text: {
+      type: String,
+      required: true
+    },
   },
 };
 </script>
