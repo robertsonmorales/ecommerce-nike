@@ -57,13 +57,13 @@
     display: flex;
     align-items: center;
     position: relative;
-    right: 50px;
 
     .hero-image {
       display: flex;
       align-items: center;
       justify-content: center;
       position: relative;
+      right: 50px;
     }
 
     .hero-colors {
