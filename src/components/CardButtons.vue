@@ -1,12 +1,16 @@
 <template>
   <div class="btn-group">
     <button @click="addToCart" class="btn btn-light btn-add-to-cart">
+
       <div class="flex-center">
         <shopping-cart-icon size="1.5x" class="cart-icon"></shopping-cart-icon>
         <span>Add to cart</span>
       </div>
+
     </button>
+
     <div class="y-divider"></div>
+
     <button class="btn btn-primary">View More</button>
   </div>
 </template>
@@ -45,19 +49,8 @@ export default {
   },
   methods: {
     addToCart: function () {
-      this.$toasted.show("Added to cart", { 
-        // type: "success",
-        theme: "outline", 
-        position: "top-center", 
-        duration : 3000,
-        action: {
-          text: "x",
-          onClick: function(e, obj){
-            obj.goAway(0);
-          }
-        }
-      });
-    },
+      this.$emit('add-to-cart');
+    }
   },
 };
 </script>

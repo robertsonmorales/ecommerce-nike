@@ -41,8 +41,11 @@
         <search-icon size="1.5x" class="search-icon"></search-icon>
       </div>
 
-      <router-link to="/favorite" class="user-icons user-nav-item">
+      <router-link 
+        to="/favorite" 
+        class="user-icons add-to-favorite user-nav-item">
         <heart-icon size="1.5x" class="heart-icon"></heart-icon>
+        <span class="badge badge-primary">2</span>
       </router-link>
 
       <router-link
@@ -53,7 +56,7 @@
         <span class="badge badge-primary">2</span>
       </router-link>
 
-      <router-link to="/account-settings">
+      <router-link to="/account-settings" class="user-icons view-profile user-nav-item">
         <user-icon size="1.5x" class="user-icons"></user-icon>
       </router-link>
     </div>
@@ -138,26 +141,28 @@
       text-decoration: none;
     }
 
-    .add-to-cart {
+    .add-to-cart,
+    .add-to-favorite {
       display: flex;
       align-items: flex-start;
+      position: relative;
 
       .badge {
-        height: 22px;
-        padding: 0px 12px;
+        min-height: 18px;
+        min-width: 26px;
         border-radius: 10px;
         color: #fff;
         font-size: 0.9em;
         display: flex;
         align-items: center;
-        font-weight: 600;
-        border: 2px solid #eeeeee;
+        font-weight: 500;
+        justify-content: center;
       }
 
       .badge-primary {
         background-color: $primary;
-        position: relative;
-        right: 5px;
+        position: absolute;
+        left: 15px;
       }
     }
   }

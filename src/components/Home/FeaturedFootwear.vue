@@ -64,8 +64,12 @@ export default {
     };
   },
   created() {
-    axios.get("http://localhost:3000/featured_footwear").then((res) => {
-      this.products = res.data;
+    axios.get("https://api.jsonbin.io/b/618e4de94a56fb3dee0ddecc", {
+      headers: {
+        "X-Master-Key": "$2b$10$TSdN37bgq5btrJOM0i1r0e2625W/uvUSXKDqyV9Hra/7sUoehKAue"
+      }
+    }).then((res) => {
+      this.products = res.data.featured_footwear;
     });
   }
 };

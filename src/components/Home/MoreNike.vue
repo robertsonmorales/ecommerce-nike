@@ -38,15 +38,19 @@ export default {
     components: {
         CategoryCard,
     },
-    created(){
-        axios.get("http://localhost:3000/categories").then((res) => {
-            this.categories = res.data;
-        });
-    },
     data(){
         return {
             categories: []
         };
+    },
+    created(){
+        axios.get("https://api.jsonbin.io/b/618e4de94a56fb3dee0ddecc", {
+            headers: {
+                "X-Master-Key": "$2b$10$TSdN37bgq5btrJOM0i1r0e2625W/uvUSXKDqyV9Hra/7sUoehKAue"
+            }
+        }).then((response) => {
+            this.categories = response.data.categories;
+        });
     }
 }
 </script>

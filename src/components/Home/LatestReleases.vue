@@ -60,10 +60,13 @@ export default {
         }
     },
     created(){
-        axios.get("http://localhost:3000/latest_release")
-            .then((response) => {
-                this.latests = response.data;
-            });
+        axios.get("https://api.jsonbin.io/b/618e4de94a56fb3dee0ddecc", {
+            headers: {
+                "X-Master-Key": "$2b$10$TSdN37bgq5btrJOM0i1r0e2625W/uvUSXKDqyV9Hra/7sUoehKAue"
+            }
+        }).then((response) => {
+            this.latests = response.data.latest_release;
+        });
     }
 }
 </script>

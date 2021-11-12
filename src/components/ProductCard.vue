@@ -6,7 +6,7 @@
         v-if="has_discount" 
         :discount="discounted_price" />
 
-      <AddToFavorite @add-to-favorite="addAsFavorite"
+      <AddToFavorite @add-to-favorite="addAsFavorite(name)"
         :is_fav="is_favorite" />
 
       <div class="img-wrapper">
@@ -41,7 +41,7 @@
 
     </div>
     <div class="product-footer">
-      <CardButtons />
+      <CardButtons @add-to-cart="addToCart(name)" />
     </div>
   </div>
 </template>
@@ -208,7 +208,19 @@ export default {
   },
   data() {
     return {
-      discounted_value: ""
+      discounted_value: "",
+      favorite: "",
+      options: {
+          theme: "outline", 
+          position: "top-center", 
+          duration : 4000,
+          action: {
+            text: "x",
+            onClick: function(e, obj){
+              obj.goAway(0);
+            }
+          }
+      }
     };
   },
   created(){
@@ -225,41 +237,26 @@ export default {
     commaSeparated: function (val){
 		  return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 	  },
-    addAsFavorite: function(){
+    addAsFavorite: function(name){
+
       if(this.is_favorite){
-        this.$toasted.show("Removed to favorites", { 
-          // type: "success",
-          theme: "outline", 
-          position: "top-center", 
-          duration : 3000,
-          action: {
-            text: "x",
-            onClick: function(e, obj){
-              obj.goAway(0);
-            }
-          }
-        });
-
-        this.is_favorite = false;
+        this.$toasted.show(`Removed ${name} to favorites`, this.options);
+        this.favorite = false;
       }else{
-        this.$toasted.show("Added to favorites", { 
-          // type: "success",
-          theme: "outline", 
-          position: "top-center", 
-          duration : 3000,
-          action: {
-            text: "x",
-            onClick: function(e, obj){
-              obj.goAway(0);
-            }
-          }
-        });
-
-        this.is_favorite = true;
+        this.$toasted.show(`Added ${name} to favorites`, this.options);
+        this.favorite = true;
       }
+    },
+    addToCart: function(name){
+      // let key = this.$vnode.key;
+      
+      this.$toasted.show(`Added ${name} to cart`, this.options);
     }
   },
   computed: {
+    isFavorite: function(){
+      return (this.favorite) ? false : true;
+    },
     newPrice: function() {
       return this.commaSeparated(this.price);
     },
