@@ -1,10 +1,14 @@
 <template>
-  <div class="wrapper">
+
+  <main class="wrapper">
+
     <Hero />
-    <FeaturedFootwear />
+    <FeaturedFootwear @count-favorites="countFavorites" />
     <LatestReleases />
     <MoreNike />
-  </div>
+
+  </main>
+
 </template>
 
 <script>
@@ -21,8 +25,10 @@ export default {
     LatestReleases,
     MoreNike
   },
-  mounted() {
-    console.log("Home Mounted Successfully!");
+  methods: {
+    countFavorites: function(e){
+      this.$emit('get-favorites', e);
+    }
   }
 };
 </script>

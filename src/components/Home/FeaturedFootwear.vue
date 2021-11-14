@@ -7,8 +7,7 @@
       </div>
 
       <div class="card-group">
-        <ProductCard
-          v-for="product in products"
+        <ProductCard v-for="product in getFeaturedFootwear"
           :key="product.id"
           :img="product.img"
           :name="product.name"
@@ -18,8 +17,7 @@
           :discounted_price="product.discounted_price"
           :rate="product.rate"
           :reviews="product.reviews"
-          :is_favorite="product.is_favorite"
-        />
+          :is_favorite="product.is_favorite" />
       </div>
 
       <div class="load-more">
@@ -50,7 +48,8 @@
 </style>
 
 <script>
-import axios from "axios";
+import { mapGetters } from "vuex";
+
 import ProductCard from "@/components/ProductCard";
 
 export default {
@@ -58,19 +57,10 @@ export default {
   components: {
     ProductCard,
   },
-  data() {
-    return {
-      products: [],
-    };
-  },
-  created() {
-    axios.get("https://api.jsonbin.io/b/618e4de94a56fb3dee0ddecc", {
-      headers: {
-        "X-Master-Key": "$2b$10$TSdN37bgq5btrJOM0i1r0e2625W/uvUSXKDqyV9Hra/7sUoehKAue"
-      }
-    }).then((res) => {
-      this.products = res.data.featured_footwear;
-    });
+  computed: {
+    ...mapGetters([
+      "getFeaturedFootwear"
+    ])
   }
 };
 </script>

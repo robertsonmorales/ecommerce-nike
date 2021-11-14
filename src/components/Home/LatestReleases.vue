@@ -6,7 +6,7 @@
         </div>
 
         <div class="latest-releases-content">
-            <LatestShoes v-for="latest in latests"
+            <LatestShoes v-for="latest in getLatestRelease"
                 :key="latest.id"
                 :img="latest.img"
                 :name="latest.name"
@@ -46,27 +46,18 @@
 </style>
 
 <script>
-import axios from "axios";
+import { mapGetters } from "vuex";
 import LatestShoes from "../LatestShoes.vue";
 
 export default {
-    name: "LatestReleases",
-    components: {
-        LatestShoes,
-    },
-    data(){
-        return {
-            latests: []
-        }
-    },
-    created(){
-        axios.get("https://api.jsonbin.io/b/618e4de94a56fb3dee0ddecc", {
-            headers: {
-                "X-Master-Key": "$2b$10$TSdN37bgq5btrJOM0i1r0e2625W/uvUSXKDqyV9Hra/7sUoehKAue"
-            }
-        }).then((response) => {
-            this.latests = response.data.latest_release;
-        });
-    }
+  name: "LatestReleases",
+  components: {
+      LatestShoes,
+  },
+  computed: {
+    ...mapGetters([
+        "getLatestRelease"
+        ])
+  }
 }
 </script>

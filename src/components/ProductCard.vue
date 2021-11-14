@@ -6,12 +6,20 @@
         v-if="has_discount" 
         :discount="discounted_price" />
 
-      <AddToFavorite @add-to-favorite="addAsFavorite(name)"
-        :is_fav="is_favorite" />
+      <button @click="addToFavorite(is_favorite)"
+        type="button"
+        class="btn-favorite">
+
+        <heart-icon size="1.5x" 
+          class="heart-icon"
+          :fill="isFavorite" 
+          :stroke="(isFavorite == 'transparent') 
+          ? 'currentColor'
+          : ''"></heart-icon>
+      </button>
 
       <div class="img-wrapper">
-        <img
-          :src="require(`../assets/images/products/featured_footwear/${img}`)"
+        <img :src="require(`../assets/images/products/featured_footwear/${img}`)"
           :alt="name"
           class="img-fluid"
         />
@@ -41,7 +49,7 @@
 
     </div>
     <div class="product-footer">
-      <CardButtons @add-to-cart="addToCart(name)" />
+      <CardButtons />
     </div>
   </div>
 </template>
@@ -74,6 +82,13 @@
       right: 25px;
       top: 20px;
       z-index: 1;
+
+      .heart-icon{
+          &:hover{
+              fill: $primary;
+              stroke: $primary;
+          }
+      }
     }
 
     .img-wrapper {
@@ -157,8 +172,9 @@
 <script>
 import CardButtons from "@/components/CardButtons";
 import ProductTag from "@/components/ProductTag";
-import AddToFavorite from "@/components/AddToFavorite";
 import StarRateReviews from "@/components/StarRateReviews";
+
+import { HeartIcon } from "vue-feather-icons";
 
 export default {
   name: "ProductCard",
@@ -166,102 +182,33 @@ export default {
     CardButtons,
     ProductTag,
     StarRateReviews,
-    AddToFavorite
+    HeartIcon
   },
   props: {
-    img: {
-      type: String,
-      required: true,
-    },
-    color: {
-      type: String,
-      required: true
-    },
-    name: {
-      type: String,
-      required: true
-    },
-    price: {
-      type: [String, Number],
-      required: true
-    },
-    has_discount: {
-      type: Boolean,
-      default: false
-    },
-    discounted_price: {
-      type: String,
-      default: ""
-    },
-    rate: {
-      type: Number,
-      required: true
-    },
-    reviews: {
-      type: Number,
-      required: true
-    },
-    is_favorite: {
-      type: Boolean,
-      default: false
-    }
+    img: { type: String, required: true, },
+    color: { type: String, required: true },
+    name: { type: String, required: true },
+    price: { type: [String, Number], required: true },
+    has_discount: { type: Boolean, default: false },
+    discounted_price: { type: String, default: "" },
+    rate: { type: Number, required: true },
+    reviews: { type: Number, required: true },
+    is_favorite: { type: Boolean, default: false }
   },
   data() {
     return {
-      discounted_value: "",
-      favorite: "",
-      options: {
-          theme: "outline", 
-          position: "top-center", 
-          duration : 4000,
-          action: {
-            text: "x",
-            onClick: function(e, obj){
-              obj.goAway(0);
-            }
-          }
-      }
+      discounted_value: ""
     };
-  },
-  created(){
-    var p = this.price; 
-    var d = this.discounted_price.split("").reverse().join("").substring(1);
-        d = d.split("").reverse().join("");
-    
-    var cd = parseFloat((d != "") ? '.' + d : 0); // cleared discount
-    var td = (p * cd); // total discount
-
-    this.discounted_value = this.commaSeparated(Math.round(p - td));
-  },
-  methods: {
-    commaSeparated: function (val){
-		  return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-	  },
-    addAsFavorite: function(name){
-
-      if(this.is_favorite){
-        this.$toasted.show(`Removed ${name} to favorites`, this.options);
-        this.favorite = false;
-      }else{
-        this.$toasted.show(`Added ${name} to favorites`, this.options);
-        this.favorite = true;
-      }
-    },
-    addToCart: function(name){
-      // let key = this.$vnode.key;
-      
-      this.$toasted.show(`Added ${name} to cart`, this.options);
-    }
   },
   computed: {
     isFavorite: function(){
-      return (this.favorite) ? false : true;
+      return (this.is_favorite) ? "#FF4D00" : "transparent";
     },
     newPrice: function() {
-      return this.commaSeparated(this.price);
+      return this.digitSeparator(this.price);
     },
     formatReviews: function(){
-      let review = this.commaSeparated(this.reviews);
+      let review = this.digitSeparator(this.reviews);
       let splitReview = review.split(",");
       let reviewsLength = splitReview.length;
       let formattedReview = "";
@@ -279,6 +226,27 @@ export default {
       }
 
       return formattedReview;
+    }
+  },
+  mounted(){
+    this.discountedValue();
+  },
+  methods: {
+    digitSeparator: function (val){
+		  return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+	  },
+    discountedValue: function(){
+      var p = this.price; 
+      var d = this.discounted_price.split("").reverse().join("").substring(1);
+          d = d.split("").reverse().join("");
+      
+      var cd = parseFloat((d != "") ? '.' + d : 0); // cleared discount
+      var td = (p * cd); // total discount
+
+      this.discounted_value = this.digitSeparator(Math.round(p - td));
+    },
+    addToFavorite: function(bool){
+      console.log(bool);
     }
   }
 };

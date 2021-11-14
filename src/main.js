@@ -4,6 +4,9 @@ import router from "./router";
 import store from "./store";
 
 import Toasted from 'vue-toasted';
+import Axios from "axios";
+
+Vue.prototype.$axios = Axios; // assign axios globally
 
 Vue.use(Toasted);
 

@@ -5,10 +5,13 @@ $font-family: 'Google Sans', sans-serif;
 $secondary-family: 'Poppins', sans-serif;
 
 $default: #333333;
+$text-muted: #555555;
+$saturated-text: #ffffff77;
 $body-bg: #fafafa;
+$footer-bg: #000000;
 
-$light: #eee;
-$light__hovered: #dbdbdb;
+$light: #dbdbdb;
+$light__hovered: #eee;
 $light__focused: #ccc;
 
 $primary: #FF4D00;
@@ -17,3 +20,4 @@ $primary__focused: #da4100;
 
 $radius: 10px;
 $margin-side: 6%;
+$margin-side__navigation: 4%;

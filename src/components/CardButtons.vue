@@ -11,7 +11,7 @@
 
     <div class="y-divider"></div>
 
-    <button class="btn btn-primary">View More</button>
+    <button class="btn btn-primary" @click="viewProduct">View More</button>
   </div>
 </template>
 
@@ -47,9 +47,27 @@ export default {
   components: {
     ShoppingCartIcon,
   },
+  data(){
+    return {
+      options: {
+        theme: "outline", 
+        position: "top-center", 
+        duration : 4000,
+        action: {
+          text: "x",
+          onClick: function(e, obj){
+            obj.goAway(0);
+          }
+        }
+      }
+    }
+  },
   methods: {
-    addToCart: function () {
-      this.$emit('add-to-cart');
+    addToCart: function(){
+      this.$toasted.show(`Added ${name} to cart`, this.options);
+    },
+    viewProduct: function(){
+      alert('View product');
     }
   },
 };
