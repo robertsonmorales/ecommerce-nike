@@ -51,8 +51,7 @@
 
         <heart-icon size="1.5x"></heart-icon>
 
-        <span class="badge badge-primary" 
-          v-show="getFav != 0">{{ getFav }}</span>
+        <span class="badge badge-primary">2</span>
 
       </router-link>
 
@@ -86,7 +85,7 @@
   justify-content: space-between;
   position: sticky;
   top: 0px;
-  z-index: 1;
+  z-index: 2;
   padding: 0px $margin-side__navigation;
   filter: drop-shadow(0 1px 3px rgba(0,0,0,0.1));
 
@@ -153,7 +152,7 @@
 
           &:focus {
             background-color: transparent;
-            border: 2px solid $primary;
+            box-shadow: 0 0 0px 4px unquote($primary + "55");
           }
         }
 

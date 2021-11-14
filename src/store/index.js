@@ -5,53 +5,87 @@ import Axios from "axios";
 
 Vue.use(Vuex, Axios);
 
-const store = new Vuex.Store({
+// const __API__CATEGORIES = "https://api.jsonbin.io/b/61910bbe0ddbee6f8b0b1e00";
+// const __API__LATEST_RELEASES = "https://api.jsonbin.io/b/61910b6d0ddbee6f8b0b1dd9";
+
+const API__FOOTWEARS = "https://api.jsonbin.io/b/619122ff01558c731cc217d0"; // featured_footwears
+
+const HEADERS = { 
+  "X-Master-Key": "$2b$10$TSdN37bgq5btrJOM0i1r0e2625W/uvUSXKDqyV9Hra/7sUoehKAue"
+};
+
+let fields = {
+  id: 0,
+  img: "",
+  name: "",
+  description: "",
+  color: "",
+  price: 0,
+  has_discount: false,
+  discounted_price: "",
+  rate: 0,
+  reviews: 0,
+  is_favorite: false
+};
+
+const FEATURED__FOOTWEAR = {
   state: {
-    data: {}
+    data: [ fields ],
+    product_preview: fields
   },
   mutations: {
-    mutateData (state, response){
+    INDEX (state, response){
       state.data = response.data;
+    },
+    SHOW (state, response){
+      state.product_preview = response.data;
     }
   },
   actions: {
-    dispatchData({ commit }) {
-      let api = "https://api.jsonbin.io/b/618e4de94a56fb3dee0ddecc";
-      let headersConfig = { "X-Master-Key": "$2b$10$TSdN37bgq5btrJOM0i1r0e2625W/uvUSXKDqyV9Hra/7sUoehKAue" };
-
-      Axios.get(api, { headers: headersConfig })
+    dispatchProduct({ commit }) {
+      Axios.get(API__FOOTWEARS, { headers: HEADERS })
         .then((res) => {
+          
           commit({
-            type: 'mutateData',
-            data: res.data
+            type: 'INDEX',
+            data: res.data.featured_footwear
           });
-      });   
+      });
+    },
+    dispatchShowProduct({ commit }, id){
+      Axios.get(API__FOOTWEARS, { headers: HEADERS })
+        .then((res) => {
+          let footwears = res.data.featured_footwear;
+          let product = {};
+
+          for (var i = 0; i < footwears.length; i++) {
+            if(footwears[i].id == id){
+              product = footwears[i];
+            }
+          }
+
+          commit({
+            type: 'SHOW',
+            data: product
+          });
+
+        });
     }
   },
   getters: {
-    getFeaturedFootwear(state){
-      return state.data.featured_footwear;
+    fetchProduct(state){
+      return state.data;
     },
-    getLatestRelease(state){
-      return state.data.latest_release;
-    },
-    getCategories(state){
-      return state.data.categories;
-    },
-    getFav(state){
-      var products = state.data.featured_footwear;
-      var counter = 0;
-      console.log(products);
-      // for (var i = 0; i < products.length; i++) {
-      //   if (products[i].is_favorite) {
-      //     counter += 1;
-      //   }
-      // }
-
-      return counter;
+    fetchSelectedProduct(state){
+      return state.product_preview;
     }
+  }
+};
+
+const store = new Vuex.Store({
+  modules: {
+    footwears: FEATURED__FOOTWEAR,
   },
-  modules: {},
 });
 
 export default store;

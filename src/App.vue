@@ -37,8 +37,8 @@ export default {
     Navbar,
     Footer
   },
-  mounted(){
-    this.$store.dispatch('dispatchData');
+  created(){
+    this.$store.dispatch('dispatchProduct');
   }
 };
 </script>
