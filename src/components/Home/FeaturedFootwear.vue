@@ -7,7 +7,7 @@
       </div>
 
       <div class="card-group">
-        <ProductCard v-for="product in getFeaturedFootwear"
+        <ProductCard v-for="product in fetchProduct"
           :key="product.id"
           :img="product.img"
           :name="product.name"
@@ -59,7 +59,7 @@ export default {
   },
   computed: {
     ...mapGetters([
-      "getFeaturedFootwear"
+      "fetchProduct"
     ])
   }
 };

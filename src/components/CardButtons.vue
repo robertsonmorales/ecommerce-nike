@@ -11,7 +11,13 @@
 
     <div class="y-divider"></div>
 
-    <button class="btn btn-primary" @click="viewProduct">View More</button>
+    <!-- <button 
+      class="btn btn-primary" 
+      @click="viewProduct">View More</button> -->
+
+    <router-link 
+      :to="{ path: productPreview }"
+      class="btn btn-primary">{{ label }}</router-link>
   </div>
 </template>
 
@@ -47,6 +53,16 @@ export default {
   components: {
     ShoppingCartIcon,
   },
+  props: {
+    productId: {
+      type: Number,
+      required: true
+    },
+    label: {
+      type: String,
+      default: "View More"
+    }
+  },
   data(){
     return {
       options: {
@@ -62,13 +78,22 @@ export default {
       }
     }
   },
+  computed: {
+    productPreview: function(){
+      return `product-preview/${this.productId}`;
+    }
+  },
   methods: {
     addToCart: function(){
       this.$toasted.show(`Added ${name} to cart`, this.options);
     },
-    viewProduct: function(){
-      alert('View product');
-    }
+    // viewProduct: function(){
+    //   let id = this.productId;
+
+    //   this.$router.push({
+    //     path: `product-preview/${id}`
+    //   });
+    // }
   },
 };
 </script>

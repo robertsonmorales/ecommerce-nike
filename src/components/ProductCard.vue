@@ -19,7 +19,7 @@
       </button>
 
       <div class="img-wrapper">
-        <img :src="require(`../assets/images/products/featured_footwear/${img}`)"
+        <img :src="require('@/assets/images/products/featured_footwear/' + img)"
           :alt="name"
           class="img-fluid"
         />
@@ -27,7 +27,7 @@
     </div>
     <div class="product-body">
       <div class="product-price">
-        <span class="discounted-price">{{ discounted_value }}</span><strike v-show="newPrice != discounted_value" class="prev-price">{{ newPrice }}</strike>
+        <span class="discounted-price">{{ discounted_value }}</span><strike v-show="productPrice != discounted_value" class="prev-price">{{ productPrice }}</strike>
       </div>
       <h4 class="product-name">{{ name }}</h4>
       <p class="product-color">{{ color }}</p>
@@ -43,13 +43,13 @@
         </div>
 
         <div class="product-sold">
-          {{ formatReviews }} reviews
+          {{ review }} sold
         </div>
       </div>
 
     </div>
     <div class="product-footer">
-      <CardButtons />
+      <CardButtons :productId="productId" label="View More" />
     </div>
   </div>
 </template>
@@ -185,14 +185,14 @@ export default {
     HeartIcon
   },
   props: {
-    img: { type: String, required: true, },
+    img: { type: String, required: true },
     color: { type: String, required: true },
     name: { type: String, required: true },
     price: { type: [String, Number], required: true },
     has_discount: { type: Boolean, default: false },
     discounted_price: { type: String, default: "" },
-    rate: { type: Number, required: true },
-    reviews: { type: Number, required: true },
+    rate: { type: Number, default: 0 },
+    reviews: { type: Number, default: 0 },
     is_favorite: { type: Boolean, default: false }
   },
   data() {
@@ -200,22 +200,35 @@ export default {
       discounted_value: ""
     };
   },
+  mounted(){
+    this.discountedValue();
+  },
   computed: {
+    productId: function(){
+      return this.$vnode.key;
+    },  
     isFavorite: function(){
       return (this.is_favorite) ? "#FF4D00" : "transparent";
     },
-    newPrice: function() {
+    productPrice: function() {
       return this.digitSeparator(this.price);
     },
-    formatReviews: function(){
+    review: function(){
       let review = this.digitSeparator(this.reviews);
+
+      return this.formatReviews(review);
+    }
+  },
+  methods: {
+    formatReviews: function(val){
+      let review = val;
       let splitReview = review.split(",");
       let reviewsLength = splitReview.length;
       let formattedReview = "";
       let unit, hundreds, thousands;
       
       if(reviewsLength == 1){
-        formattedReview = this.reviews;
+        formattedReview = review;
       }else if(reviewsLength == 2){ // K
         unit = "K";
         hundreds = (splitReview[1].charAt(0) == 0) ? "" : splitReview[1].charAt(0);
@@ -226,12 +239,7 @@ export default {
       }
 
       return formattedReview;
-    }
-  },
-  mounted(){
-    this.discountedValue();
-  },
-  methods: {
+    },
     digitSeparator: function (val){
 		  return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 	  },
