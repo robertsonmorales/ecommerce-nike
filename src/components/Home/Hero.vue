@@ -1,28 +1,26 @@
 <template>
   <header class="container-fluid">
     <div class="row">
-        <div class="col">
+        <div class="headlines">
           <h1 class="hero-headline">NIKE, JUST <br />DO IT.</h1>
           <p class="hero-subheadline">More Sport, More Inspiration, More Nike!</p>
           <Button text="Get Your Get &nbsp; &rarr;" />
         </div>
-        <div class="col">
-          <div class="hero-banner">
-            <div class="hero-image">
-              <img :src="shoe" :alt="shoe" width="739" height="633" />
-              <img
-                :src="ellipse"
-                :alt="ellipse"
-                id="ellipse"
-                width="450"
-                height="450"
-              />
-            </div>
-            <div class="hero-colors">
-              <ButtonCircle color="background-color: #111111;" selected />
-              <ButtonCircle color="background-color: #FF4D00;" />
-              <ButtonCircle color="background-color: #072C4D;" />
-            </div>
+        <div class="hero-banner">
+          <div class="hero-image">
+            <img :src="shoe" :alt="shoe" width="739" height="633" />
+            <img
+              :src="ellipse"
+              :alt="ellipse"
+              id="ellipse"
+              width="450"
+              height="450"
+            />
+          </div>
+          <div class="hero-colors">
+            <ButtonCircle color="background-color: #111111;" selected />
+            <ButtonCircle color="background-color: #FF4D00;" />
+            <ButtonCircle color="background-color: #072C4D;" />
           </div>
         </div>
       </div>
@@ -37,26 +35,28 @@
   align-items: center;
   justify-content: space-between;
 
-  .hero-headline {
-    font-family: $secondary-family;
-    font-weight: 900;
-    font-size: 64px;
-    letter-spacing: 0.15em;
-    color: $default;
-    margin-top: 0;
-    margin-bottom: 15px;
-    white-space: nowrap;
-    line-height: 80px;
-  }
+  .headlines{
+    .hero-headline {
+      font-family: $secondary-family;
+      font-weight: 900;
+      font-size: 64px;
+      letter-spacing: 0.15em;
+      color: $default;
+      margin-top: 0;
+      margin-bottom: 15px;
+      white-space: nowrap;
+      line-height: 80px;
+    }
 
-  .hero-subheadline {
-    margin-bottom: 30px;
+    .hero-subheadline {
+      margin-bottom: 30px;
+    }
   }
 
   .hero-banner {
     display: flex;
     align-items: center;
-    position: relative;
+    position:  relative;
 
     .hero-image {
       display: flex;
@@ -94,9 +94,6 @@ export default {
   components: {
     Button,
     ButtonCircle,
-  },
-  mounted() {
-    console.log("Hero Mounted Successfully!");
   },
   data() {
     return {

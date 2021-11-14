@@ -8,6 +8,7 @@
         height="21"
       />
     </div>
+
     <ul class="nav-links">
       <li class="nav-link-item">
         <router-link to="/">HOME</router-link>
@@ -30,22 +31,29 @@
     </ul>
 
     <div class="user-navbar">
-      <div class="search-navbar user-nav-item">
-        <input
-          type="text"
-          class="form-control"
-          v-model="search"
-          maxlength="30"
-          placeholder="Search here ..."
-        />
-        <search-icon size="1.5x" class="search-icon"></search-icon>
-      </div>
+      <form>
+        <label for="search">Search</label>
+        <div class="search-navbar user-nav-item">
+          <input
+            type="text"
+            class="form-control"
+            v-model="search"
+            maxlength="30"
+            placeholder="Search here ..."
+          />
+          <search-icon size="1.5x" class="search-icon"></search-icon>
+        </div>
+      </form>
 
       <router-link 
         to="/favorite" 
         class="user-icons add-to-favorite user-nav-item">
-        <heart-icon size="1.5x" class="heart-icon"></heart-icon>
-        <span class="badge badge-primary">2</span>
+
+        <heart-icon size="1.5x"></heart-icon>
+
+        <span class="badge badge-primary" 
+          v-show="getFav != 0">{{ getFav }}</span>
+
       </router-link>
 
       <router-link
@@ -56,9 +64,14 @@
         <span class="badge badge-primary">2</span>
       </router-link>
 
-      <router-link to="/account-settings" class="user-icons view-profile user-nav-item">
+      <router-link 
+        to="/account-settings"
+        class="user-icons view-profile user-nav-item">
+
         <user-icon size="1.5x" class="user-icons"></user-icon>
+
       </router-link>
+
     </div>
   </nav>
 </template>
@@ -74,14 +87,15 @@
   position: sticky;
   top: 0px;
   z-index: 1;
-  padding: 15px $margin-side;
+  padding: 0px $margin-side__navigation;
+  filter: drop-shadow(0 1px 3px rgba(0,0,0,0.1));
 
   .nav-links {
     list-style: none;
     display: flex;
 
     .nav-link-item {
-      margin: 0 15px;
+      margin: 30px 15px;
 
       a {
         text-decoration: none;
@@ -89,12 +103,15 @@
         font-size: 0.9em;
         padding-bottom: 10px;
         color: $default;
-        transition: all 0.1s ease-in-out;
+        transition: all .3s ease;
+
+        &:hover{
+          font-weight: 600;
+        }
 
         &.router-link-exact-active {
           font-weight: 600;
           color: $primary;
-          border-bottom: 2px solid $primary;
         }
       }
     }
@@ -108,31 +125,42 @@
     display: flex;
     align-items: center;
 
-    .search-navbar {
-      display: flex;
-      align-items: center;
-      position: relative;
-
-      .form-control {
-        font-family: $font-family;
-        background-color: $light;
-        border-radius: 10px;
-        border: none;
-        outline: none;
-        height: 50px;
-        padding-left: 15px;
-        padding-right: 45px;
-        font-size: 0.9em;
-        transition: all .3s ease;
-
-        &:focus {
-          background-color: $light__focused;
-        }
+    form{
+      label{
+        display:  none;
       }
 
-      .search-icon {
-        position: absolute;
-        right: 15px;
+      .search-navbar {
+        display: flex;
+        align-items: center;
+        position: relative;
+
+        .form-control {
+          font-family: $font-family;
+          background-color: $light__hovered;
+          border-radius: 10px;
+          border: none;
+          outline: none;
+          height: 50px;
+          padding-left: 15px;
+          padding-right: 45px;
+          border: 2px solid transparent;
+          transition: all .3s ease;
+
+          &:hover{
+            background-color:  $light;
+          }
+
+          &:focus {
+            background-color: transparent;
+            border: 2px solid $primary;
+          }
+        }
+
+        .search-icon {
+          position: absolute;
+          right: 15px;
+        }
       }
     }
 
@@ -170,6 +198,7 @@
 </style>
 
 <script>
+import { mapGetters } from "vuex"; 
 import {
   SearchIcon,
   HeartIcon,
@@ -183,15 +212,16 @@ export default {
     SearchIcon,
     HeartIcon,
     ShoppingCartIcon,
-    UserIcon,
-  },
-  mounted() {
-    console.log("Component Mounted Successfully!");
+    UserIcon
   },
   data() {
     return {
       search: "",
-    };
+      favorites: 0
+    }
   },
+  computed: {
+    ...mapGetters(["getFav"])
+  }
 };
 </script>
