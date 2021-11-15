@@ -16,7 +16,7 @@
       @click="viewProduct">View More</button> -->
 
     <router-link 
-      :to="{ path: productPreview }"
+      :to="route"
       class="btn btn-primary">{{ label }}</router-link>
   </div>
 </template>
@@ -58,6 +58,10 @@ export default {
       type: Number,
       required: true
     },
+    route: {
+      type: Object,
+      required: true
+    },
     label: {
       type: String,
       default: "View More"
@@ -78,22 +82,10 @@ export default {
       }
     }
   },
-  computed: {
-    productPreview: function(){
-      return `product-preview/${this.productId}`;
-    }
-  },
   methods: {
     addToCart: function(){
       this.$toasted.show(`Added ${name} to cart`, this.options);
-    },
-    // viewProduct: function(){
-    //   let id = this.productId;
-
-    //   this.$router.push({
-    //     path: `product-preview/${id}`
-    //   });
-    // }
+    }
   },
 };
 </script>

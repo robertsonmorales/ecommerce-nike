@@ -27,7 +27,9 @@
     </div>
     <div class="product-body">
       <div class="product-price">
-        <span class="discounted-price">{{ discounted_value }}</span><strike v-show="productPrice != discounted_value" class="prev-price">{{ productPrice }}</strike>
+        <span class="discounted-price">{{ discountedValue | separator | unit }}</span>
+        <strike v-show="price != discountedValue" 
+          class="prev-price">{{ price | separator | unit }}</strike>
       </div>
       <h4 class="product-name">{{ name }}</h4>
       <p class="product-color">{{ color }}</p>
@@ -43,19 +45,21 @@
         </div>
 
         <div class="product-sold">
-          {{ review }} sold
+          {{ reviews | separator | shortThousand }} sold
         </div>
       </div>
 
     </div>
     <div class="product-footer">
-      <CardButtons :productId="productId" label="View More" />
+      <CardButtons :productId="productId"
+        label="View More"
+        :route="route" />
     </div>
   </div>
 </template>
 
 <style lang="scss">
-@import "../assets/scss/_variable";
+@import "../assets/scss/_mixins";
 
 .product-card {
   display: flex;
@@ -104,27 +108,6 @@
     .product-price{
       font-weight: bold;
       margin-bottom: 10px;
-
-      .discounted-price {
-        color: $primary;
-        margin-right: 10px;
-      }
-
-      .prev-price{
-        color: #777;
-      }
-
-      .discounted-price,
-      .prev-price{
-        &::before{
-          content: "₱";
-        }
-
-        &::after{
-          content: ".00";
-        }
-      }
-
     }
 
     .product-name {
@@ -176,6 +159,9 @@ import StarRateReviews from "@/components/StarRateReviews";
 
 import { HeartIcon } from "vue-feather-icons";
 
+// mixins
+// import { DiscountedPrice } from "../mixins/DiscountedPrice.js";
+
 export default {
   name: "ProductCard",
   components: {
@@ -195,54 +181,19 @@ export default {
     reviews: { type: Number, default: 0 },
     is_favorite: { type: Boolean, default: false }
   },
-  data() {
-    return {
-      discounted_value: ""
-    };
-  },
-  mounted(){
-    this.discountedValue();
-  },
+  // mixins: [ DiscountedPrice ],
   computed: {
     productId: function(){
       return this.$vnode.key;
-    },  
+    },
+    route: function(){
+      return { 
+        path: `product-preview/${this.productId}`
+      };
+    },
     isFavorite: function(){
       return (this.is_favorite) ? "#FF4D00" : "transparent";
     },
-    productPrice: function() {
-      return this.digitSeparator(this.price);
-    },
-    review: function(){
-      let review = this.digitSeparator(this.reviews);
-
-      return this.formatReviews(review);
-    }
-  },
-  methods: {
-    formatReviews: function(val){
-      let review = val;
-      let splitReview = review.split(",");
-      let reviewsLength = splitReview.length;
-      let formattedReview = "";
-      let unit, hundreds, thousands;
-      
-      if(reviewsLength == 1){
-        formattedReview = review;
-      }else if(reviewsLength == 2){ // K
-        unit = "K";
-        hundreds = (splitReview[1].charAt(0) == 0) ? "" : splitReview[1].charAt(0);
-        hundreds = (hundreds == "") ? "" : "." + hundreds;
-        thousands = splitReview[0];
-
-        formattedReview = thousands + hundreds + unit;
-      }
-
-      return formattedReview;
-    },
-    digitSeparator: function (val){
-		  return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-	  },
     discountedValue: function(){
       var p = this.price; 
       var d = this.discounted_price.split("").reverse().join("").substring(1);
@@ -251,8 +202,10 @@ export default {
       var cd = parseFloat((d != "") ? '.' + d : 0); // cleared discount
       var td = (p * cd); // total discount
 
-      this.discounted_value = this.digitSeparator(Math.round(p - td));
-    },
+      return Math.round(p - td);
+    }
+  },
+  methods: {
     addToFavorite: function(bool){
       console.log(bool);
     }

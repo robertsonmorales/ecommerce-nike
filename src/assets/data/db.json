@@ -11,6 +11,8 @@
       "discounted_price": "20%",
       "rate": 4,
       "reviews": 1000,
+      "sold": 1030,
+      "stocks": 100,
       "is_favorite": false
     },
     {
@@ -24,6 +26,8 @@
       "discounted_price": "",
       "rate": 3.5,
       "reviews": 1200,
+      "sold": 1030,
+      "stocks": 100,
       "is_favorite": true
     },
     {
@@ -37,6 +41,8 @@
       "discounted_price": "",
       "rate": 4.5,
       "reviews": 300,
+      "sold": 1030,
+      "stocks": 100,
       "is_favorite": true
     },
     {
@@ -50,6 +56,8 @@
       "discounted_price": "",
       "rate": 2,
       "reviews": 452,
+      "sold": 1030,
+      "stocks": 100,
       "is_favorite": false
     },
     {
@@ -63,6 +71,8 @@
       "discounted_price": "10%",
       "rate": 5,
       "reviews": 1356,
+      "sold": 1030,
+      "stocks": 100,
       "is_favorite": false
     },
     {
@@ -76,6 +86,8 @@
       "discounted_price": "20%",
       "rate": 4,
       "reviews": 455,
+      "sold": 1030,
+      "stocks": 100,
       "is_favorite": false
     }
   ],

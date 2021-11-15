@@ -1,5 +1,5 @@
 @import '_normalize';
-@import '_variable';
+@import '_mixins';
 
 *{
     margin: 0;
@@ -70,7 +70,7 @@ a.btn{
 
 .btn-light {
     color: $default;
-    background-color: $light;
+    border:  1px solid $light;
 
     &:hover{
         background-color: $light__hovered;
@@ -79,4 +79,18 @@ a.btn{
     &:active{
         background-color: $light__focused;
     }
+}
+
+
+.discounted-price{
+    @include discounted;
+}
+
+.prev-price{
+    @include striked;
+}
+
+.text-primary{
+    color: $primary;
+    font-weight: 500;
 }
