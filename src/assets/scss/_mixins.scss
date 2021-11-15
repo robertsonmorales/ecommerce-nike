@@ -1,0 +1,16 @@
+@import "_variable";
+
+@mixin flexCenter($content){
+	display: flex;
+    align-items: center;
+    justify-content: $content;
+}
+
+@mixin discounted{
+    color: $primary;
+    margin-right: 10px;
+}
+
+@mixin striked{
+    color: $text-muted;
+}
