@@ -4,11 +4,16 @@
         <div class="headlines">
           <h1 class="hero-headline">NIKE, JUST <br />DO IT.</h1>
           <p class="hero-subheadline">More Sport, More Inspiration, More Nike!</p>
-          <Button text="Get Your Get &nbsp; &rarr;" />
+          <call-to-action>Get Your Great &nbsp; &rarr;</call-to-action>
         </div>
         <div class="hero-banner">
           <div class="hero-image">
-            <img :src="shoe" :alt="shoe" width="739" height="633" />
+            <img 
+              :src="shoe" 
+              :alt="shoe" 
+              width="739" 
+              height="633"
+              id="hero-model" />
             <img
               :src="ellipse"
               :alt="ellipse"
@@ -28,7 +33,11 @@
 </template>
 
 <style lang="scss">
-@import "../../assets/scss/_variable";
+@import "../../../assets/scss/_variable";
+
+header{
+  height: 100vh;
+}
 
 .row {
   display: flex;
@@ -80,10 +89,29 @@
   position: absolute;
   z-index: -1;
 }
+
+#hero-model{
+  animation-name: float;
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+  animation-direction: alternate;
+  animation-fill-mode: forwards;
+}
+
+@keyframes float{
+  0%{
+    transform: translateY(0px);
+  }
+
+  100% {
+    transform: translateY(20px);
+  }
+}
 </style>
 
 <script>
-import Button from "@/components/Button";
+import CallToAction from "@/components/CallToAction";
 import ButtonCircle from "@/components/ButtonColor";
 
 import Shoe from "@/assets/images/shoes.png";
@@ -92,7 +120,7 @@ import Ellipse from "@/assets/images/ellipse.svg";
 export default {
   name: "Hero",
   components: {
-    Button,
+    CallToAction,
     ButtonCircle,
   },
   data() {

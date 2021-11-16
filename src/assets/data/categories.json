@@ -1,0 +1,29 @@
+{
+    "categories": [
+        {
+            "id": 1,
+            "name": "Men's",
+            "img": "MEN.png"
+        },
+        {
+            "id": 2,
+            "name": "Women's",
+            "img": "WOMEN.png"
+        },
+        {
+            "id": 3,
+            "name": "Kids'",
+            "img": "KIDS.png"
+        },
+        {
+            "id": 4,
+            "name": "Customise'",
+            "img": "KIDS.png"
+        },
+        {
+            "id": 5,
+            "name": "Sale",
+            "img": "KIDS.png"
+        }
+    ]
+}

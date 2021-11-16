@@ -2,11 +2,11 @@
   <section class="container-fluid more-nike">
     <div class="subheadline">
       <h4>MORE NIKE CATEGORIES</h4>
-      <img src="../../assets/images/line.svg" alt="Line" />
+      <img src="@/assets/images/line.svg" alt="Line" />
     </div>
 
     <div class="nike-categories">
-      <CategoryCard v-for="category in getCategories"
+      <CategoryCard v-for="category in categories"
         :key="category.id"
         :img="category.img"
         :name="category.name" />
@@ -92,11 +92,12 @@
         </li>
       </ul>
     </div>
+
   </section>
 </template>
 
 <style lang="scss">
-@import "../../assets/scss/_variable";
+@import "@/assets/scss/_variable";
 
 .more-nike{
     padding: 50px 0;
@@ -138,6 +139,7 @@
 
 <script>
 import { mapGetters } from "vuex";
+
 import CategoryCard from "@/components/CategoryCard";
 
 export default {
@@ -147,8 +149,9 @@ export default {
   },
   computed: {
     ...mapGetters([
-      "getCategories"
-    ])
+      "categories"
+    ]),
+    
   }
 }
 </script>

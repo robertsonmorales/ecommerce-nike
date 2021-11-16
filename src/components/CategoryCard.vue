@@ -1,7 +1,7 @@
 <template>
     <a class="category-card">
         <img class="category-img"
-        :src="require(`../assets/images/categories/${img}`)"
+        :src="publicPath + newImg"
         :alt="name">
         <h3 class="category-name">{{ name }}</h3>
     </a>
@@ -45,6 +45,8 @@
 </style>
 
 <script>
+import { publicPath } from "@/mixins/publicPath.js";
+
 export default {
     name: "CategoryCard",
     props: {
@@ -55,6 +57,12 @@ export default {
         name: {
             type: String,
             required: true
+        }
+    },
+    mixins: [ publicPath ],
+    computed: {
+        newImg: function(){
+          return "images/categories/" + this.img;
         }
     }
 }

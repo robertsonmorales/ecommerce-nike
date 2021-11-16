@@ -33,7 +33,7 @@
     <div class="user-navbar">
       <form>
         <label for="search">Search</label>
-        <div class="search-navbar user-nav-item">
+        <div class="input-group user-nav-item">
           <input
             type="text"
             class="form-control"
@@ -41,7 +41,7 @@
             maxlength="30"
             placeholder="Search here ..."
           />
-          <search-icon size="1.5x" class="search-icon"></search-icon>
+          <search-icon size="1.5x" class="input-icon"></search-icon>
         </div>
       </form>
 
@@ -65,7 +65,7 @@
 
       <router-link 
         to="/account-settings"
-        class="user-icons view-profile user-nav-item">
+        class="user-icons account-settings">
 
         <user-icon size="1.5x" class="user-icons"></user-icon>
 
@@ -128,44 +128,29 @@
       label{
         display:  none;
       }
-
-      .search-navbar {
-        display: flex;
-        align-items: center;
-        position: relative;
-
-        .form-control {
-          font-family: $font-family;
-          background-color: $light__hovered;
-          border-radius: 10px;
-          border: none;
-          outline: none;
-          height: 50px;
-          padding-left: 15px;
-          padding-right: 45px;
-          border: 2px solid transparent;
-          transition: all .3s ease;
-
-          &:hover{
-            background-color:  $light;
-          }
-
-          &:focus {
-            background-color: transparent;
-            box-shadow: 0 0 0px 4px unquote($primary + "55");
-          }
-        }
-
-        .search-icon {
-          position: absolute;
-          right: 15px;
-        }
-      }
     }
 
     .user-icons {
       color: $default;
       text-decoration: none;
+    }
+
+    .account-settings{
+      margin-left: 30px;
+      background-color: $light;
+      height: 46px;
+      width: 46px;
+      border-radius: 50%;
+      @include flexCenter(center);
+
+      &:hover{
+        background-color: $light__hovered;
+      }
+
+      &:active{
+        background-color: $light__focused;
+        @include bootstrapBoxShadow($light__active);
+      }
     }
 
     .add-to-cart,

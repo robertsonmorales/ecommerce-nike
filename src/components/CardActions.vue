@@ -1,42 +1,35 @@
 <template>
   <div class="btn-group">
-    <button @click="addToCart" class="btn btn-light btn-add-to-cart">
+    <button @click="addToCart"
+      class="btn btn-light btn-add-to-cart">
 
-      <div class="flex-center">
-        <shopping-cart-icon size="1.5x" class="cart-icon"></shopping-cart-icon>
-        <span>Add to cart</span>
-      </div>
+      <shopping-cart-icon size="1.5x" class="cart-icon"></shopping-cart-icon>
+      <span>Add to cart</span>
 
     </button>
 
     <div class="y-divider"></div>
 
-    <!-- <button 
-      class="btn btn-primary" 
-      @click="viewProduct">View More</button> -->
-
     <router-link 
       :to="route"
-      class="btn btn-primary">{{ label }}</router-link>
+      class="btn btn-primary">
+      <slot></slot>
+    </router-link>
   </div>
 </template>
 
 <style lang="scss">
-@import "../assets/scss/_variable";
+@import "@/assets/scss/_mixins";
 
 .btn-group {
-  display: flex;
-  align-items: center;
+  @include flexCenter(flex-start);
 
   .y-divider {
     margin: 0 5px;
   }
 
   .btn-add-to-cart {
-    .flex-center {
-      display: flex;
-      align-items: center;
-    }
+    @include flexCenter(center);
 
     .cart-icon {
       margin-right: 10px;
@@ -54,17 +47,9 @@ export default {
     ShoppingCartIcon,
   },
   props: {
-    productId: {
-      type: Number,
-      required: true
-    },
     route: {
       type: Object,
       required: true
-    },
-    label: {
-      type: String,
-      default: "View More"
     }
   },
   data(){
@@ -84,7 +69,7 @@ export default {
   },
   methods: {
     addToCart: function(){
-      this.$toasted.show(`Added ${name} to cart`, this.options);
+      this.$toasted.show(`Added to cart`, this.options);
     }
   },
 };

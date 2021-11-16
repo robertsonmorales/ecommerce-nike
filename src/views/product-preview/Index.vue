@@ -4,10 +4,8 @@
 	</main>
 </template>
 
-<style lang="scss"></style>
-
 <script>
-import ProductDetails from "@/components/ProductPreview/ProductDetails";
+import ProductDetails from "./sections/ProductDetails";
 
 export default{
 	name: "ProductPreview",
@@ -15,7 +13,7 @@ export default{
 		ProductDetails
 	},
 	mounted(){
-		this.$store.dispatch('dispatchShowProduct', this.$route.params.id);
+		this.$store.dispatch('showSelectedFootwear', this.$route.params.id);
 	}
 }
 </script>

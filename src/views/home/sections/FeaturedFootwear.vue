@@ -3,7 +3,7 @@
     <div class="featured-footwear">
       <div class="subheadline">
         <h4>FEATURED FOOTWEAR</h4>
-        <img src="../../assets/images/line.svg" alt="Line" />
+        <img src="@/assets/images/line.svg" alt="Line" />
       </div>
 
       <div class="card-group">
@@ -16,20 +16,20 @@
           :has_discount="product.has_discount"
           :discounted_price="product.discounted_price"
           :rate="product.rate"
-          :reviews="product.reviews"
+          :sold="product.sold"
           :is_favorite="product.is_favorite" />
       </div>
 
-      <div class="load-more">
-        <button type="button" 
-          class="btn btn-primary btn-load-more">Load More</button>
+      <div class="view-more">
+        <router-link to="featured-footwears" 
+          class="text-primary">View More Featured Footwears</router-link>
       </div>
     </div>
   </section>
 </template>
 
 <style lang="scss">
-@import "../../assets/scss/_variable";
+@import "../../../assets/scss/_variable";
 
 .featured-footwear {
   margin-bottom: 52px;
@@ -41,7 +41,7 @@
     margin-bottom: 45px;
   }
 
-  .load-more {
+  .view-more {
     text-align: center;
   }
 }

@@ -1,10 +1,7 @@
-import Vue from "vue";
 import Axios from "axios";
-import { API } from "./api.config";
+import { API } from "../api.config";
 
-Vue.use(Axios);
-
-const fields = {
+const FIELDS = {
   id: 0,
   img: "",
   name: "",
@@ -15,35 +12,36 @@ const fields = {
   discounted_price: "",
   rate: 0,
   reviews: 0,
+  sold: 0,
   is_favorite: false
 };
 
 export const Footwears = {
   state: {
-    data: [ fields ],
-    product_preview: fields
+    data: [ FIELDS ],
+    product_preview: FIELDS
   },
   mutations: {
-    INDEX (state, response){
+    INDEX_FOOTWEAR (state, response){
       state.data = response.data;
     },
-    SHOW (state, response){
+    SHOW_FOOTWEARS (state, response){
       state.product_preview = response.data;
     }
   },
   actions: {
-    dispatchProduct({ commit }) {
+    fetchFeaturedFootwear({ commit }) {
       Axios.get(API.data.footwears, {
       	headers: API.headers
       }).then((res) => {
           
           commit({
-            type: 'INDEX',
+            type: 'INDEX_FOOTWEAR',
             data: res.data.featured_footwear
           });
       });
     },
-    dispatchShowProduct({ commit }, id){
+    showSelectedFootwear({ commit }, id){
       Axios.get(API.data.footwears, {
       	headers: API.headers
       }).then((res) => {
@@ -57,7 +55,7 @@ export const Footwears = {
           }
 
           commit({
-            type: 'SHOW',
+            type: 'SHOW_FOOTWEARS',
             data: product
           });
 

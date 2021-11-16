@@ -1,19 +1,18 @@
 <template>
-    <div :style="customStyle" class="release">
-        <img
-          :src="require(`../assets/images/products/latest_releases/${img}`)"
-          :alt="name"
-          :width="width"
-          :height="height"
-          class="img-fluid"
-        />
-        <div class="details">
-            <h4 class="product-name">{{ name }}</h4>
-            <p class="product-price">{{ price }}</p>
+  <div class="release">
+    <img :src="newImg"
+      :alt="name"
+      width="600"
+      height="625.57"
+      class="img-fluid"
+    />
+    <div class="details">
+      <h4 class="product-name">{{ name }}</h4>
+      <p class="product-price">{{ price | separator | unit }}</p>
 
-            <button class="btn btn-light btn-buynow">Buy Now</button>
-        </div>
+      <button class="btn btn-light btn-buynow">Buy Now</button>
     </div>
+  </div>
 </template>
 
 <style lang="scss">
@@ -47,22 +46,38 @@
         }
 
         .btn-buynow{
-            color: $primary;
+            /*color: $primary;*/
+            background-color: #fff;
         }
+    }
+
+    &:nth-child(even){
+      margin: 0 -15%;
     }
 }
 </style>
 
 <script>
 export default {
-    name: "LatestShoes",
-    props: {
-        img: String,
-        name: String,
-        price: String,
-        width: Number,
-        height: Number,
-        customStyle: String
+  name: "LatestShoes",
+  props: {
+    img: {
+      type: String,
+      required: true
+    },
+    name: {
+      type: String,
+      required: true,
+    },
+    price: {
+      type: [String, Number],
+      required: true
     }
+  },
+  computed: {
+    newImg: function(){
+      return "images/products/latest_releases/" + this.img;
+    }
+  }
 }
 </script>

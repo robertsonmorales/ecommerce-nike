@@ -42,7 +42,7 @@ body{
     justify-content: center;
     font-family: $font-family;
     border-radius: 10px;
-    border: none;
+    border: 1px solid transparent;
     outline: none;
     height: 50px;
     padding: 15px 30px;
@@ -56,7 +56,7 @@ a.btn{
 .btn-primary {
     color: #fff;
     background-color: $primary;
-    box-shadow: 10px 10px 30px rgba(0, 0, 0, 0.25);
+    // box-shadow: 10px 10px 30px rgba(0, 0, 0, 0.25);
 
     &:hover{
         background-color: $primary__hovered;
@@ -64,13 +64,13 @@ a.btn{
 
     &:active{
         background-color: $primary__focused;
-        box-shadow: 1px 10px 30px rgba(0, 0, 0, 0.25);
+        @include bootstrapBoxShadow($primary);
     }
 }
 
 .btn-light {
     color: $default;
-    border:  1px solid $light;
+    background-color: $light;
 
     &:hover{
         background-color: $light__hovered;
@@ -78,6 +78,7 @@ a.btn{
 
     &:active{
         background-color: $light__focused;
+        @include bootstrapBoxShadow($light__active);
     }
 }
 
@@ -93,4 +94,37 @@ a.btn{
 .text-primary{
     color: $primary;
     font-weight: 500;
+}
+
+.input-group {
+  display: flex;
+  align-items: center;
+  position: relative;
+
+  .form-control {
+    font-family: $font-family;
+    background-color: $light__hovered;
+    border-radius: 10px;
+    border: none;
+    outline: none;
+    height: 50px;
+    padding-left: 15px;
+    padding-right: 45px;
+    border: 1px solid transparent;
+    transition: all .3s ease;
+
+    &:hover{
+      background-color:  $light;
+    }
+
+    &:focus {
+      background-color: transparent;
+      @include bootstrapBoxShadow($primary);
+    }
+  }
+
+  .input-icon {
+    position: absolute;
+    right: 15px;
+  }
 }
