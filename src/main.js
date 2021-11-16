@@ -6,10 +6,12 @@ import store from "./store";
 import filter from "./filter"; // global filters
 
 import Toasted from 'vue-toasted';
-import Axios from "axios";
 
-Vue.prototype.$axios = Axios; // assign axios globally
+// import Axios from "axios";
+// Vue.prototype.$axios = Axios; // assign axios globally
+
 Vue.use(Toasted);
+
 Vue.config.productionTip = false;
 
 new Vue({

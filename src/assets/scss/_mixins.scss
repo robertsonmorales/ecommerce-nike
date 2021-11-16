@@ -14,3 +14,8 @@
 @mixin striked{
     color: $text-muted;
 }
+
+@mixin bootstrapBoxShadow($color){
+    border: 1px solid unquote($color + "77");
+    box-shadow: 0 0 0px 4px unquote($color + "55");
+}

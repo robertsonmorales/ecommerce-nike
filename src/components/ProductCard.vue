@@ -19,7 +19,7 @@
       </button>
 
       <div class="img-wrapper">
-        <img :src="require('@/assets/images/products/featured_footwear/' + img)"
+        <img :src="publicPath + newImg"
           :alt="name"
           class="img-fluid"
         />
@@ -44,16 +44,12 @@
               : false" />
         </div>
 
-        <div class="product-sold">
-          {{ reviews | separator | shortThousand }} sold
-        </div>
+        <div class="product-sold">{{ sold | separator | shortThousand }} sold</div>
       </div>
 
     </div>
     <div class="product-footer">
-      <CardButtons :productId="productId"
-        label="View More"
-        :route="route" />
+      <card-actions :route="preview">View More</card-actions>
     </div>
   </div>
 </template>
@@ -68,7 +64,7 @@
   min-width: 100%;
   border-radius: $radius;
   overflow: hidden;
-  border: 1px solid #eeeeee;
+  border: 1px solid $border;
   background-color: #fff;
   filter: drop-shadow(10px 10px 30px rgba(224, 222, 220, 0.7));
   transition: all .3s ease;
@@ -153,19 +149,17 @@
 </style>
 
 <script>
-import CardButtons from "@/components/CardButtons";
+import CardActions from "@/components/CardActions";
 import ProductTag from "@/components/ProductTag";
 import StarRateReviews from "@/components/StarRateReviews";
 
 import { HeartIcon } from "vue-feather-icons";
-
-// mixins
-// import { DiscountedPrice } from "../mixins/DiscountedPrice.js";
+import { publicPath } from "../mixins/publicPath.js";
 
 export default {
   name: "ProductCard",
   components: {
-    CardButtons,
+    CardActions,
     ProductTag,
     StarRateReviews,
     HeartIcon
@@ -178,17 +172,22 @@ export default {
     has_discount: { type: Boolean, default: false },
     discounted_price: { type: String, default: "" },
     rate: { type: Number, default: 0 },
-    reviews: { type: Number, default: 0 },
+    sold: { type: Number, default: 0 },
     is_favorite: { type: Boolean, default: false }
   },
-  // mixins: [ DiscountedPrice ],
+  mixins: [ publicPath ],
+  data(){
+    return {
+      productId: this.$vnode.key
+    }
+  },
   computed: {
-    productId: function(){
-      return this.$vnode.key;
-    },
-    route: function(){
-      return { 
-        path: `product-preview/${this.productId}`
+    preview: function(){
+      return {
+        name: "product-preview",
+        params: {
+          id: this.productId
+        }
       };
     },
     isFavorite: function(){
@@ -203,6 +202,9 @@ export default {
       var td = (p * cd); // total discount
 
       return Math.round(p - td);
+    },
+    newImg: function(){
+      return "images/products/featured_footwear/" + this.img;
     }
   },
   methods: {

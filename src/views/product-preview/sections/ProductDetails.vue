@@ -10,19 +10,17 @@
 				<div class="product-carousel">
 					<div class="img-wrapper">
 						<img class="img-fluid"
-							:src="require('@/assets/images/products/featured_footwear/' + fetchSelectedProduct.img)"
+							:src="publicPath + newImg"
 							:alt="fetchSelectedProduct.name"
 							width="433"
 							height="443">
 					</div>
-					<div class="carousel-btns">
-						
-					</div>
+					<div class="carousel-btns"></div>
 				</div>
 			</div>
 		</div>
 
-		<div class="details">
+		 <div class="details">
 			<h1 class="product-name">{{ name }}</h1>
 			<h3 class="product-price">
 				<span class="discounted-price">{{ discountedValue | separator | unit }}</span>
@@ -31,28 +29,30 @@
       </h3>
 
 			<div class="rate-and-review">
-				<StarRateReviews v-for="(r, x) in 5"
-	        :key="x"
-	        :filled="(fetchSelectedProduct.rate >= (x + 1)) ? true : false" />
-	      <span class="rating">{{ fetchSelectedProduct.rate | rate }}</span>
-	      <span class="review">{{ fetchSelectedProduct.reviews | separator | shortThousand }} ratings</span>
-	      <span class="sold">{{ fetchSelectedProduct.reviews | separator | shortThousand }} sold</span>
+				<div class="star-rate">
+					<StarRateReviews v-for="(r, x) in 5"
+		        :key="x"
+		        :filled="(fetchSelectedProduct.rate >= (x + 1)) ? true : false" />
+		      <span class="rating">{{ fetchSelectedProduct.rate | rate }}</span>
+				</div>
+				<span class="vertical-divider">|</span>
+				<span class="review">{{ reviews | separator | shortThousand }} ratings</span>
+				<span class="vertical-divider">|</span>
+				<span class="sold">{{ fetchSelectedProduct.sold | separator | shortThousand }} sold</span>
 			</div>
 
-			<p class="description">{{ fetchSelectedProduct.description }}</p>
+			<p class="description">{{ fetchSelectedProduct.description }}</p> 
 
 			<ProductQty />
 
-			<CardButtons :productId="prodId"
-				label="Checkout Now"
-				:route="route" />
+			<card-actions :route="checkout">Checkout Now</card-actions>
 		</div>
 
 	</section>
 </template>
 
 <style lang="scss">
-@import "../../assets/scss/_mixins";
+@import "@/assets/scss/_mixins";
 
 .product-details{
 	margin-top: 50px;
@@ -68,6 +68,7 @@
 			position: relative;
 			background-color: $bg-for-image;
 			border-radius: 10px;
+			border: 1px solid $border;
 
 			.product-tag{
 				position: absolute;
@@ -89,16 +90,19 @@
 			margin-bottom: 30px;
 			@include flexCenter(flex-start);
 
-			.rating{
-				margin-left: 10px;
-				font-weight: 600;
-				color: $primary;
+			.star-rate{
+				@include flexCenter(center);
+
+				.rating{
+					margin-left: 10px;
+					font-weight: 600;
+					color: $primary;
+				}
 			}
 
-			.review,
-			.sold{
-				margin-left: 20px;
-				color: $text-muted;
+			.vertical-divider{
+				margin: 0 30px;
+				color: $light__active;
 			}
 		}
 
@@ -116,9 +120,9 @@ import { mapGetters } from "vuex";
 import ProductTag from "@/components/ProductTag";
 import StarRateReviews from "@/components/StarRateReviews";
 import ProductQty from "@/components/ProductQty";
-import CardButtons from "@/components/CardButtons";
+import CardActions from "@/components/CardActions";
 
-// import { DiscountedPrice } from "../../mixins/DiscountedPrice.js";
+import { publicPath } from "@/mixins/publicPath.js";
 
 export default {
 	name: "ProductDetails",
@@ -126,16 +130,23 @@ export default {
 		ProductTag,
 		StarRateReviews,
 		ProductQty,
-		CardButtons
+		CardActions
 	},
-	// mixins: [ DiscountedPrice ],
+	mixins: [ publicPath ],
+	data(){
+		return {
+			productId: this.$route.params.id
+		}
+	},
 	computed: {
 		...mapGetters(["fetchSelectedProduct"]),
-		prodId: function(){
-			return parseInt(this.$route.params.id);
-		},
-		route: function(){
-			return { path: `product-preview/${this.$route.params.id}`};
+		checkout: function(){
+			return {
+				name: "product-checkout",
+				params: {
+					id: this.productId
+				}
+			};
 		},
 		name: function(){
 			return this.fetchSelectedProduct.name;
@@ -152,6 +163,12 @@ export default {
       var td = (p * cd); // total discount
 
       return Math.round(p - td);
+    },
+    reviews: function(){
+    	return this.fetchSelectedProduct.reviews;
+    },
+    newImg: function(){
+    	return "images/products/featured_footwear/" + this.fetchSelectedProduct.img;
     }
 	}
 }

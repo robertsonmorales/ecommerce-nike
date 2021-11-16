@@ -1,22 +1,28 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 
-import Home from "@/views/Home.vue";
-import ProductPreview from "@/views/ProductPreview.vue";
+import Home from "@/views/home/Index.vue";
+import ProductPreview from "@/views/product-preview/Index.vue";
+import Checkout from "@/views/checkout/Index.vue";
 
 Vue.use(VueRouter);
 
 const routes = [
   {
     path: "/",
-    name: "Home",
+    name: "home",
     component: Home,
   },
   {
     path: "/product-preview/:id",
-    name: "ProductPreview",
+    name: "product-preview",
     component: ProductPreview,
   },
+  {
+    path: "/product-checkout/:id",
+    name: "product-checkout",
+    component: Checkout
+  }
 ];
 
 const router = new VueRouter({

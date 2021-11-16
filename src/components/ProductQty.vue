@@ -7,7 +7,7 @@
 			:disabled="isDisabled"
 			:class="(isDisabled) ? 'disabled' : ''"
 			@click="minusQty">
-			<minus-icon size="1x" class="custom-class"></minus-icon>
+			<minus-icon size="1x" class="minus-icon"></minus-icon>
 		</button>
 
 		<input type="text" 
@@ -28,7 +28,6 @@
 </template>
 
 <style lang="scss">
-@import "../assets/scss/_variable";
 @import "../assets/scss/_mixins";
 
 .qty{
@@ -45,7 +44,7 @@
 		height: 42px;
 		width: 42px;
 		outline: none;
-		border: none;
+		border: 1px solid tranparent;
 		border:  1px solid $light;
 		cursor: pointer;
 
@@ -55,6 +54,7 @@
 
 		&:active{
 			background-color: $light__focused;
+			@include bootstrapBoxShadow($light__active);
 		}
 
 		&-minus{
@@ -82,6 +82,10 @@
 
 	.disabled{
 		cursor: not-allowed;
+
+		.minus-icon{
+			pointer-events: none;
+		}
 
 		&:hover{
 			background-color: transparent !important;

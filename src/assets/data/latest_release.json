@@ -1,0 +1,22 @@
+{
+	"latest_release": [
+	    {
+	        "id": 1,
+	        "img": "Nike Air Max 5.png",
+	        "name": "Nike Air Max 5",
+	        "price": 3228
+	    },
+	    {
+	        "id": 2,
+	        "img": "Nike Air Foce 5.png",
+	        "name": "Nike Air Max 5",
+	        "price": 3228
+	    },
+	    {
+	        "id": 3,
+	        "img": "Nike Air Max 95.png",
+	        "name": "Nike Air Max 5",
+	        "price": 3228
+	    }
+  	]
+}
