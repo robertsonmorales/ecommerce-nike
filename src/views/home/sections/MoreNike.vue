@@ -6,10 +6,12 @@
     </div>
 
     <div class="nike-categories">
-      <CategoryCard v-for="category in categories"
+      <CategoryCard
+        v-for="category in categories"
         :key="category.id"
         :img="category.img"
-        :name="category.name" />
+        :name="category.name"
+      />
     </div>
 
     <div class="more-nike-categories">
@@ -92,49 +94,48 @@
         </li>
       </ul>
     </div>
-
   </section>
 </template>
 
 <style lang="scss">
 @import "@/assets/scss/_variable";
 
-.more-nike{
-    padding: 50px 0;
+.more-nike {
+  padding: 50px 0;
 
-    .nike-categories{
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      margin-bottom: 45px;
-    }
+  .nike-categories {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 60px;
+  }
 
-    .more-nike-categories{
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      padding: 0 45px;
+  .more-nike-categories {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    padding: 0 45px;
 
-      .category-list{
-        list-style: none;
+    .category-list {
+      list-style: none;
+      text-align: center;
 
-        .category-list-item{
-          margin-bottom: 15px;
+      .category-list-item {
+        margin-bottom: 15px;
 
-          a{
-            text-decoration: none;
-            color: $text-muted;
-            transition: all .3s ease;
+        a {
+          text-decoration: none;
+          color: $text-muted;
+          transition: all 0.3s ease;
 
-            &:hover{
-              color:  $primary;
-              font-weight: 500;
-            }
+          &:hover {
+            color: $primary;
+            font-weight: 500;
           }
         }
       }
     }
+  }
 }
-
 </style>
 
 <script>
@@ -148,10 +149,7 @@ export default {
     CategoryCard,
   },
   computed: {
-    ...mapGetters([
-      "categories"
-    ]),
-    
-  }
-}
+    ...mapGetters(["categories"]),
+  },
+};
 </script>

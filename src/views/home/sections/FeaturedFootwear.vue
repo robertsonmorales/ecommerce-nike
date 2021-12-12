@@ -43,6 +43,15 @@
 
   .view-more {
     text-align: center;
+
+    a{
+      text-decoration: none;
+      transition: all .3s ease;
+
+      &:hover{
+        font-weight: 600;
+      }
+    }
   }
 }
 </style>

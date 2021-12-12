@@ -87,7 +87,7 @@
   top: 0px;
   z-index: 2;
   padding: 0px $margin-side__navigation;
-  filter: drop-shadow(0 1px 3px rgba(0,0,0,0.1));
+  // filter: drop-shadow(0 1px 3px rgba(0,0,0,0.1));
 
   .nav-links {
     list-style: none;

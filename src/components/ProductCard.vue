@@ -64,7 +64,7 @@
   min-width: 100%;
   border-radius: $radius;
   overflow: hidden;
-  border: 1px solid $border;
+  border: $border;
   background-color: #fff;
   filter: drop-shadow(10px 10px 30px rgba(224, 222, 220, 0.7));
   transition: all .3s ease;

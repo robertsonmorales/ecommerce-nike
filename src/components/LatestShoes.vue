@@ -1,6 +1,7 @@
 <template>
   <div class="release">
-    <img :src="newImg"
+    <img
+      :src="newImg"
       :alt="name"
       width="600"
       height="625.57"
@@ -10,7 +11,7 @@
       <h4 class="product-name">{{ name }}</h4>
       <p class="product-price">{{ price | separator | unit }}</p>
 
-      <button class="btn btn-light btn-buynow">Buy Now</button>
+      <button class="btn btn-primary btn-buynow">Shop Now</button>
     </div>
   </div>
 </template>
@@ -18,42 +19,38 @@
 <style lang="scss">
 @import "../assets/scss/_variable";
 
-.release{
+.release {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+
+  .details {
+    margin-top: -25%;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-between;
+    justify-content: flex-end;
 
-    .details{
-        margin-top: -25%;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: flex-end;
-
-        .product-name{
-            margin-bottom: 15px;
-            font-weight: 500;
-            font-style: normal;
-            font-size: 24px;
-        }
-
-        .product-price{
-            font-weight: normal;
-            font-style: normal;
-            font-size: 18px;
-            margin-bottom: 30px;
-        }
-
-        .btn-buynow{
-            /*color: $primary;*/
-            background-color: #fff;
-        }
+    .product-name {
+      color: $default;
+      margin-bottom: 15px;
+      font-weight: 500;
+      font-style: normal;
+      font-size: 24px;
     }
 
-    &:nth-child(even){
-      margin: 0 -15%;
+    .product-price {
+      font-weight: 600;
+      font-style: normal;
+      font-size: 18px;
+      margin-bottom: 30px;
     }
+  }
+
+  &:nth-child(even) {
+    margin: 0 -15%;
+  }
 }
 </style>
 
@@ -63,7 +60,7 @@ export default {
   props: {
     img: {
       type: String,
-      required: true
+      required: true,
     },
     name: {
       type: String,
@@ -71,13 +68,13 @@ export default {
     },
     price: {
       type: [String, Number],
-      required: true
-    }
+      required: true,
+    },
   },
   computed: {
-    newImg: function(){
+    newImg: function () {
       return "images/products/latest_releases/" + this.img;
-    }
-  }
-}
+    },
+  },
+};
 </script>

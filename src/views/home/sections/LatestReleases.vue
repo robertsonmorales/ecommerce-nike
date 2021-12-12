@@ -1,8 +1,8 @@
 <template>
   <section class="latest-releases">
     <div class="subheadline">
-      <h4>LATEST RELEASE</h4>
-      <img src="@/assets/images/line2.svg" alt="Line" />
+      <h4>LATEST RELEASES</h4>
+      <img src="@/assets/images/line.svg" alt="Line" />
     </div>
 
     <div class="latest-releases-content">
@@ -13,31 +13,27 @@
         :name="latest.name"
         :price="latest.price" />
     </div>
-    <br>
-    <br>
-    <br>
   </section>
 </template>
 
 <style lang="scss">
-@import "../../../assets/scss/_variable";
+@import "../../../assets/scss/_mixins";
 
 .latest-releases{
-  background-color: $primary;
-  color: #fff;
+  background-color: #fff;
+  color: $primary;
   min-height: 793px;
   padding: 30px 0;
   overflow-x: hidden;
 
   .subheadline{
-      padding-bottom: 0px !important;
+    padding: 30px 0 0 0 !important;
+    color: $default;
   }
 
   .latest-releases-content{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 0 6%;
+    @include flexCenter(center);
+    margin: 0 6% 45px 6%;
   }
 }
 
