@@ -1,18 +1,13 @@
 <template>
   <div class="btn-group">
-    <button @click="addToCart"
-      class="btn btn-light btn-add-to-cart">
-
+    <button @click="addToCart" class="btn btn-light btn-add-to-cart">
       <shopping-cart-icon size="1.5x" class="cart-icon"></shopping-cart-icon>
       <span>Add to cart</span>
-
     </button>
 
     <div class="y-divider"></div>
 
-    <router-link 
-      :to="route"
-      class="btn btn-primary">
+    <router-link :to="route" class="btn btn-primary">
       <slot></slot>
     </router-link>
   </div>
@@ -49,28 +44,28 @@ export default {
   props: {
     route: {
       type: Object,
-      required: true
-    }
+      required: true,
+    },
   },
-  data(){
+  data() {
     return {
       options: {
-        theme: "outline", 
-        position: "top-center", 
-        duration : 4000,
+        theme: "outline",
+        position: "top-center",
+        duration: 4000,
         action: {
           text: "x",
-          onClick: function(e, obj){
+          onClick: function (e, obj) {
             obj.goAway(0);
-          }
-        }
-      }
-    }
+          },
+        },
+      },
+    };
   },
   methods: {
-    addToCart: function(){
+    addToCart: function () {
       this.$toasted.show(`Added to cart`, this.options);
-    }
+    },
   },
 };
 </script>

@@ -21,8 +21,8 @@ const routes = [
   {
     path: "/product-checkout/:id",
     name: "product-checkout",
-    component: Checkout
-  }
+    component: Checkout,
+  },
 ];
 
 const router = new VueRouter({

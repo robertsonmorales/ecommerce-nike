@@ -6,12 +6,13 @@
     </div>
 
     <div class="latest-releases-content">
-      <LatestShoes 
+      <LatestShoes
         v-for="latest in latestRelease"
         :key="latest.id"
         :img="latest.img"
         :name="latest.name"
-        :price="latest.price" />
+        :price="latest.price"
+      />
     </div>
   </section>
 </template>
@@ -19,24 +20,23 @@
 <style lang="scss">
 @import "../../../assets/scss/_mixins";
 
-.latest-releases{
+.latest-releases {
   background-color: #fff;
   color: $primary;
   min-height: 793px;
   padding: 30px 0;
   overflow-x: hidden;
 
-  .subheadline{
+  .subheadline {
     padding: 30px 0 0 0 !important;
     color: $default;
   }
 
-  .latest-releases-content{
+  .latest-releases-content {
     @include flexCenter(center);
     margin: 0 6% 45px 6%;
   }
 }
-
 </style>
 
 <script>
@@ -50,9 +50,7 @@ export default {
     LatestShoes,
   },
   computed: {
-    ...mapGetters([
-      "latestRelease"
-    ]),
-  }
-}
+    ...mapGetters(["latestRelease"]),
+  },
+};
 </script>

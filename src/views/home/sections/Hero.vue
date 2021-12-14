@@ -1,41 +1,42 @@
 <template>
   <header class="container-fluid">
     <div class="row">
-        <div class="headlines">
-          <h1 class="hero-headline">NIKE, JUST <br />DO IT.</h1>
-          <p class="hero-subheadline">More Sport, More Inspiration, More Nike!</p>
-          <call-to-action>Get Your Great &nbsp; &rarr;</call-to-action>
+      <div class="headlines">
+        <h1 class="hero-headline">NIKE, JUST <br />DO IT.</h1>
+        <p class="hero-subheadline">More Sport, More Inspiration, More Nike!</p>
+        <call-to-action>Get Your Great &nbsp; &rarr;</call-to-action>
+      </div>
+      <div class="hero-banner">
+        <div class="hero-image">
+          <img
+            :src="shoe"
+            :alt="shoe"
+            width="739"
+            height="633"
+            id="hero-model"
+          />
+          <img
+            :src="ellipse"
+            :alt="ellipse"
+            id="ellipse"
+            width="450"
+            height="450"
+          />
         </div>
-        <div class="hero-banner">
-          <div class="hero-image">
-            <img 
-              :src="shoe" 
-              :alt="shoe" 
-              width="739" 
-              height="633"
-              id="hero-model" />
-            <img
-              :src="ellipse"
-              :alt="ellipse"
-              id="ellipse"
-              width="450"
-              height="450"
-            />
-          </div>
-          <div class="hero-colors">
-            <ButtonCircle color="background-color: #111111;" selected />
-            <ButtonCircle color="background-color: #FF4D00;" />
-            <ButtonCircle color="background-color: #072C4D;" />
-          </div>
+        <div class="hero-colors">
+          <ButtonCircle color="background-color: #111111;" selected />
+          <ButtonCircle color="background-color: #FF4D00;" />
+          <ButtonCircle color="background-color: #072C4D;" />
         </div>
       </div>
+    </div>
   </header>
 </template>
 
 <style lang="scss">
 @import "../../../assets/scss/_variable";
 
-header{
+header {
   height: 100vh;
 }
 
@@ -44,7 +45,7 @@ header{
   align-items: center;
   justify-content: space-between;
 
-  .headlines{
+  .headlines {
     .hero-headline {
       font-family: $secondary-family;
       font-weight: 900;
@@ -65,7 +66,7 @@ header{
   .hero-banner {
     display: flex;
     align-items: center;
-    position:  relative;
+    position: relative;
 
     .hero-image {
       display: flex;
@@ -90,7 +91,7 @@ header{
   z-index: -1;
 }
 
-#hero-model{
+#hero-model {
   animation-name: float;
   animation-duration: 2s;
   animation-iteration-count: infinite;
@@ -99,8 +100,8 @@ header{
   animation-fill-mode: forwards;
 }
 
-@keyframes float{
-  0%{
+@keyframes float {
+  0% {
     transform: translateY(0px);
   }
 

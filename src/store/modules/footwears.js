@@ -13,61 +13,59 @@ const FIELDS = {
   rate: 0,
   reviews: 0,
   sold: 0,
-  is_favorite: false
+  is_favorite: false,
 };
 
 export const Footwears = {
   state: {
-    data: [ FIELDS ],
-    product_preview: FIELDS
+    data: [FIELDS],
+    product_preview: FIELDS,
   },
   mutations: {
-    INDEX_FOOTWEAR (state, response){
+    INDEX_FOOTWEAR(state, response) {
       state.data = response.data;
     },
-    SHOW_FOOTWEARS (state, response){
+    SHOW_FOOTWEARS(state, response) {
       state.product_preview = response.data;
-    }
+    },
   },
   actions: {
     fetchFeaturedFootwear({ commit }) {
       Axios.get(API.data.footwears, {
-      	headers: API.headers
+        headers: API.headers,
       }).then((res) => {
-          
-          commit({
-            type: 'INDEX_FOOTWEAR',
-            data: res.data.featured_footwear
-          });
+        commit({
+          type: "INDEX_FOOTWEAR",
+          data: res.data.featured_footwear,
+        });
       });
     },
-    showSelectedFootwear({ commit }, id){
+    showSelectedFootwear({ commit }, id) {
       Axios.get(API.data.footwears, {
-      	headers: API.headers
+        headers: API.headers,
       }).then((res) => {
-          let footwears = res.data.featured_footwear;
-          let product = {};
+        let footwears = res.data.featured_footwear;
+        let product = {};
 
-          for (var i = 0; i < footwears.length; i++) {
-            if(footwears[i].id == id){
-              product = footwears[i];
-            }
+        for (var i = 0; i < footwears.length; i++) {
+          if (footwears[i].id == id) {
+            product = footwears[i];
           }
+        }
 
-          commit({
-            type: 'SHOW_FOOTWEARS',
-            data: product
-          });
-
+        commit({
+          type: "SHOW_FOOTWEARS",
+          data: product,
         });
-    }
+      });
+    },
   },
   getters: {
-    fetchProduct(state){
+    fetchProduct(state) {
       return state.data;
     },
-    fetchSelectedProduct(state){
+    fetchSelectedProduct(state) {
       return state.product_preview;
-    }
-  }
+    },
+  },
 };

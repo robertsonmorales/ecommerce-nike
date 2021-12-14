@@ -1,10 +1,12 @@
 <template>
   <a class="category-card">
-    <img class="category-img" 
-        :src="publicPath + newImg" 
-        :alt="name"
-        width="380"
-        height="600"/>
+    <img
+      class="category-img"
+      :src="publicPath + newImg"
+      :alt="name"
+      width="380"
+      height="600"
+    />
     <h3 class="category-name">{{ name }}</h3>
   </a>
 </template>
@@ -20,15 +22,15 @@
   max-height: 100%;
   cursor: pointer;
 
-  &:first-child{
+  &:first-child {
     border-radius: 0px 200px 200px 200px;
   }
 
-  &:nth-last-child(even){
+  &:nth-last-child(even) {
     border-radius: 200px;
   }
 
-  &:last-child{
+  &:last-child {
     border-radius: 200px 200px 0px 200px;
   }
 

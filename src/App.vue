@@ -1,16 +1,12 @@
 <template>
   <div id="app">
-
     <Navbar />
 
     <transition name="fade">
-
       <router-view />
-
     </transition>
 
     <Footer />
-
   </div>
 </template>
 
@@ -18,7 +14,7 @@
 .fade-enter-active,
 .fade-leave-active {
   transform: translateX(0px);
-  transition: all .3s ease;
+  transition: all 0.3s ease;
 }
 
 .fade-enter,
@@ -35,7 +31,7 @@ import Footer from "@/layouts/Footer";
 export default {
   components: {
     Navbar,
-    Footer
-  }
+    Footer,
+  },
 };
 </script>
