@@ -7,7 +7,8 @@
       </div>
 
       <div class="card-group">
-        <ProductCard v-for="product in fetchProduct"
+        <ProductCard
+          v-for="product in fetchProduct"
           :key="product.id"
           :img="product.img"
           :name="product.name"
@@ -17,12 +18,14 @@
           :discounted_price="product.discounted_price"
           :rate="product.rate"
           :sold="product.sold"
-          :is_favorite="product.is_favorite" />
+          :is_favorite="product.is_favorite"
+        />
       </div>
 
       <div class="view-more">
-        <router-link to="featured-footwears" 
-          class="text-primary">View More Featured Footwears</router-link>
+        <router-link to="featured-footwears" class="text-primary"
+          >View More Featured Footwears</router-link
+        >
       </div>
     </div>
   </section>
@@ -44,11 +47,11 @@
   .view-more {
     text-align: center;
 
-    a{
+    a {
       text-decoration: none;
-      transition: all .3s ease;
+      transition: all 0.3s ease;
 
-      &:hover{
+      &:hover {
         font-weight: 600;
       }
     }
@@ -67,9 +70,7 @@ export default {
     ProductCard,
   },
   computed: {
-    ...mapGetters([
-      "fetchProduct"
-    ])
-  }
+    ...mapGetters(["fetchProduct"]),
+  },
 };
 </script>

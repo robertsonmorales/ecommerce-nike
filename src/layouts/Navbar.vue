@@ -45,14 +45,13 @@
         </div>
       </form>
 
-      <router-link 
-        to="/favorite" 
-        class="user-icons add-to-favorite user-nav-item">
-
+      <router-link
+        to="/favorite"
+        class="user-icons add-to-favorite user-nav-item"
+      >
         <heart-icon size="1.5x"></heart-icon>
 
         <span class="badge badge-primary">2</span>
-
       </router-link>
 
       <router-link
@@ -63,14 +62,9 @@
         <span class="badge badge-primary">2</span>
       </router-link>
 
-      <router-link 
-        to="/account-settings"
-        class="user-icons account-settings">
-
+      <router-link to="/account-settings" class="user-icons account-settings">
         <user-icon size="1.5x" class="user-icons"></user-icon>
-
       </router-link>
-
     </div>
   </nav>
 </template>
@@ -102,9 +96,9 @@
         font-size: 0.9em;
         padding-bottom: 10px;
         color: $default;
-        transition: all .3s ease;
+        transition: all 0.3s ease;
 
-        &:hover{
+        &:hover {
           font-weight: 600;
         }
 
@@ -124,9 +118,9 @@
     display: flex;
     align-items: center;
 
-    form{
-      label{
-        display:  none;
+    form {
+      label {
+        display: none;
       }
     }
 
@@ -135,7 +129,7 @@
       text-decoration: none;
     }
 
-    .account-settings{
+    .account-settings {
       margin-left: 30px;
       background-color: $light;
       height: 46px;
@@ -143,11 +137,11 @@
       border-radius: 50%;
       @include flexCenter(center);
 
-      &:hover{
+      &:hover {
         background-color: $light__hovered;
       }
 
-      &:active{
+      &:active {
         background-color: $light__focused;
         @include bootstrapBoxShadow($light__active);
       }
@@ -182,7 +176,7 @@
 </style>
 
 <script>
-import { mapGetters } from "vuex"; 
+import { mapGetters } from "vuex";
 import {
   SearchIcon,
   HeartIcon,
@@ -196,16 +190,16 @@ export default {
     SearchIcon,
     HeartIcon,
     ShoppingCartIcon,
-    UserIcon
+    UserIcon,
   },
   data() {
     return {
       search: "",
-      favorites: 0
-    }
+      favorites: 0,
+    };
   },
   computed: {
-    ...mapGetters(["getFav"])
-  }
+    ...mapGetters(["getFav"]),
+  },
 };
 </script>

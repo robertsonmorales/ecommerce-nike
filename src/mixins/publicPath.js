@@ -3,5 +3,5 @@ export const publicPath = {
     return {
       publicPath: process.env.BASE_URL,
     };
-  }
+  },
 };

@@ -4,8 +4,8 @@ export const DiscountedPrice = {
       discounted_value: "",
     };
   },
-  mounted(){
+  mounted() {
     this.discountedValue();
     console.log("Mixins Worked");
-  }
+  },
 };

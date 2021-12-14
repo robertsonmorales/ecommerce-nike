@@ -4,33 +4,33 @@ import { API } from "../api.config";
 const FIELDS = {
   id: 0,
   name: "",
-  img: ""
+  img: "",
 };
 
 export const Categories = {
   state: {
-    data: [ FIELDS ]
+    data: [FIELDS],
   },
   mutations: {
-    INDEX_CATEGORY (state, response){
+    INDEX_CATEGORY(state, response) {
       state.data = response.data;
-    }
+    },
   },
   actions: {
     fetchCategories({ commit }) {
       Axios.get(API.data.categories, {
-      	headers: API.headers
+        headers: API.headers,
       }).then((res) => {
-          commit({
-            type: 'INDEX_CATEGORY',
-            data: res.data.categories
-          });
+        commit({
+          type: "INDEX_CATEGORY",
+          data: res.data.categories,
+        });
       });
-    }
+    },
   },
   getters: {
-    categories(state){
+    categories(state) {
       return state.data;
-    }
-  }
+    },
+  },
 };

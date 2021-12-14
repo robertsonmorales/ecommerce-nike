@@ -5,7 +5,7 @@ import store from "./store";
 
 import filter from "./filter"; // global filters
 
-import Toasted from 'vue-toasted';
+import Toasted from "vue-toasted";
 
 // import Axios from "axios";
 // Vue.prototype.$axios = Axios; // assign axios globally

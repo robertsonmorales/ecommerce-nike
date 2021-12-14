@@ -11,7 +11,7 @@ const store = new Vuex.Store({
   modules: {
     footwears: Footwears,
     latest_releases: LatestReleases,
-    categories: Categories
+    categories: Categories,
   },
 });
 

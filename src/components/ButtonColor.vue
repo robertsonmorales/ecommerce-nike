@@ -1,5 +1,6 @@
 <template>
-  <button type="button"
+  <button
+    type="button"
     class="btn-circle"
     :style="color"
     :class="selectedColor"
@@ -17,12 +18,12 @@
   cursor: pointer;
 }
 
-.selected{
+.selected {
   border: 8px solid #fff;
   box-shadow: 10px 10px 30px rgba(0, 0, 0, 0.2);
 }
 
-.default{
+.default {
   border: 5px solid #fff;
 }
 </style>
@@ -33,17 +34,17 @@ export default {
   props: {
     color: {
       type: String,
-      required: true
+      required: true,
     },
     selected: {
       type: Boolean,
-      default: false
+      default: false,
     },
   },
   computed: {
-    selectedColor: function(){
-      return (this.selected) ? "selected" : "default";
-    }
-  }
+    selectedColor: function () {
+      return this.selected ? "selected" : "default";
+    },
+  },
 };
 </script>
