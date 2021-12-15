@@ -17,7 +17,7 @@ body{
     color: $default;
     font-size: 1em;
     letter-spacing: .3px;
-    background-color: $body-bg;
+    background-color: #fff;
 }
 
 .subheadline {
@@ -82,6 +82,9 @@ a.btn{
     }
 }
 
+.bg-light{
+    background-color: $body-bg;
+}
 
 .discounted-price{
     @include discounted;

@@ -93,6 +93,7 @@
       overflow: hidden;
       text-align: center;
       transition: all 0.3s ease;
+      z-index: 1;
     }
   }
 
@@ -139,9 +140,9 @@
   &:hover {
     filter: drop-shadow(10px 10px 20px rgba(224, 222, 220, 1));
 
-    .product-image .img-wrapper {
-      transform: scale(1.1);
-    }
+    // .product-image .img-wrapper {
+    //   transform: scale(1.05);
+    // }
   }
 }
 </style>

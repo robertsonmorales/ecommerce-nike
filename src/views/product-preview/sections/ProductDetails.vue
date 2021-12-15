@@ -2,11 +2,6 @@
   <section class="product-details">
     <div class="product">
       <div class="preview">
-        <ProductTag
-          v-if="fetchSelectedProduct.has_discount"
-          :discount="fetchSelectedProduct.discounted_price"
-        />
-
         <div class="product-carousel">
           <div class="img-wrapper">
             <img
@@ -24,14 +19,6 @@
 
     <div class="details">
       <h1 class="product-name">{{ name }}</h1>
-      <h3 class="product-price">
-        <span class="discounted-price">{{
-          discountedValue | separator | unit
-        }}</span>
-        <strike class="prev-price" v-show="price != discountedValue">{{
-          price | separator | unit
-        }}</strike>
-      </h3>
 
       <div class="rate-and-review">
         <div class="star-rate">
@@ -44,7 +31,7 @@
         </div>
         <span class="vertical-divider">|</span>
         <span class="review"
-          >{{ reviews | separator | shortThousand }} ratings</span
+          >{{ reviews | separator | shortThousand }} reviews</span
         >
         <span class="vertical-divider">|</span>
         <span class="sold"
@@ -55,9 +42,89 @@
         >
       </div>
 
-      <p class="description">{{ fetchSelectedProduct.description }}</p>
+      <div class="product-price">
+        <h3 class="new-price">
+          <span class="discounted-price">{{
+            discountedValue | separator | unit
+          }}</span>
+          <strike class="prev-price" v-show="price != discountedValue">{{
+            price | separator | unit
+          }}</strike>
+        </h3>
 
-      <ProductQty />
+        <ProductTag
+          v-if="fetchSelectedProduct.has_discount"
+          :discount="fetchSelectedProduct.discounted_price"
+        />
+      </div>
+
+      <div class="delivery">
+        <div class="delivery-info">
+          <div class="details">
+            Delivery
+            <div class="more-info">?</div>
+          </div>
+          <truck-icon size="1.5x" class="truck-icon"></truck-icon>
+
+          <div class="delivery-tag">
+            <img :src="green_tag" alt="Green Tag" width="110" height="24" />
+            <span class="label-tag">Free Delivery</span>
+          </div>
+        </div>
+        <ul class="delivery-notes">
+          <li class="delivery-note-item">
+            Standard delivered 5-9 Business Days
+          </li>
+          <li class="delivery-note-item">
+            Express delivered 2-4 Business Days
+          </li>
+        </ul>
+      </div>
+
+      <div class="designs">
+        <div class="details">Design</div>
+        <div class="design-gallery">
+          <div class="design-img active">
+            <img
+              src="/images/Jordan One Take II PF/CW2458-006/Index.jfif"
+              alt="Jordan One Take II PF"
+              width="80"
+              height="80"
+              style="object-fit: cover"
+            />
+          </div>
+          <div class="design-img">
+            <img
+              src="/images/Jordan One Take II PF/CW2458-006/Index.jfif"
+              alt="Jordan One Take II PF"
+              width="80"
+              height="80"
+              style="object-fit: cover"
+            />
+          </div>
+          <div class="design-img">
+            <img
+              src="/images/Jordan One Take II PF/CW2458-006/Index.jfif"
+              alt="Jordan One Take II PF"
+              width="80"
+              height="80"
+              style="object-fit: cover"
+            />
+          </div>
+          <div class="design-img">
+            <img
+              src="/images/Jordan One Take II PF/CW2458-006/Index.jfif"
+              alt="Jordan One Take II PF"
+              width="80"
+              height="80"
+              style="object-fit: cover"
+            />
+          </div>
+        </div>
+      </div>
+      <!-- <p class="description">{{ fetchSelectedProduct.description }}</p> -->
+
+      <!-- <ProductQty /> -->
 
       <card-actions :route="checkout">Checkout Now</card-actions>
     </div>
@@ -68,18 +135,19 @@
 @import "@/assets/scss/_mixins";
 
 .product-details {
-  margin-top: 50px;
+  margin: $spacing 0;
   padding: 0 $margin-side;
   display: grid;
+  align-items: center;
   grid-template-columns: repeat(2, 1fr);
   grid-column-gap: 45px;
-  margin-bottom: 90px;
+  min-height: 80vh;
 
   .product {
     .preview {
       @include flexCenter(center);
       position: relative;
-      background-color: $bg-for-image;
+      background-color: $bg-light;
       border-radius: 10px;
       border: 1px solid $border;
 
@@ -115,40 +183,135 @@
 
       .vertical-divider {
         margin: 0 30px;
-        color: $light__active;
+        color: $divider;
       }
     }
 
-    .description {
-      margin-bottom: 30px;
-      line-height: 24px;
+    .product-price {
+      @include flexCenter(flex-start);
+
+      .new-price {
+        margin-right: 30px;
+      }
     }
+
+    .delivery {
+      margin-bottom: 30px;
+
+      .delivery-info {
+        @include flexCenter(flex-start);
+        margin-bottom: 10px;
+
+        .details {
+          @include flexCenter(flex-start);
+          margin-right: 15px;
+
+          .more-info {
+            @include flexCenter(center);
+            background-color: #5858f3;
+            color: #fff;
+            font-size: 0.7em;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            margin-left: 5px;
+          }
+        }
+
+        .truck-icon {
+          margin-right: 15px;
+        }
+
+        .delivery-tag {
+          @include flexCenter(flex-start);
+          position: relative;
+
+          img {
+            width: 110px;
+            height: 24px;
+          }
+
+          .label-tag {
+            position: absolute;
+            left: 5px;
+            font-size: 0.8em;
+            color: #fff;
+          }
+        }
+      }
+
+      .delivery-notes {
+        color: $text-muted;
+        margin-left: 20px;
+
+        .delivery-note-item {
+          font-size: 0.8em;
+          margin-bottom: 5px;
+        }
+      }
+    }
+
+    .designs {
+      margin-bottom: 30px;
+
+      .details {
+        margin-bottom: 10px;
+      }
+
+      .design-gallery {
+        @include flexCenter(flex-start);
+
+        .design-img {
+          margin-right: 10px;
+          border-radius: $radius;
+          overflow: hidden;
+          background-color: $bg-light;
+          box-sizing: border-box;
+
+          &:last-child {
+            margin-right: 0;
+          }
+        }
+
+        .active {
+          border: 1px solid $primary;
+        }
+      }
+    }
+    // .description {
+    //   margin-bottom: 30px;
+    //   line-height: 24px;
+    // }
   }
 }
 </style>
 
 <script>
 import { mapGetters } from "vuex";
-
+import { TruckIcon } from "vue-feather-icons";
 import ProductTag from "@/components/ProductTag";
 import StarRateReviews from "@/components/StarRateReviews";
-import ProductQty from "@/components/ProductQty";
+// import ProductQty from "@/components/ProductQty";
 import CardActions from "@/components/CardActions";
 
 import { publicPath } from "@/mixins/publicPath.js";
 
+import GreenTag from "@/assets/images/green-tag.png";
+
 export default {
   name: "ProductDetails",
   components: {
+    TruckIcon,
     ProductTag,
     StarRateReviews,
-    ProductQty,
+    // ProductQty,
     CardActions,
   },
   mixins: [publicPath],
   data() {
     return {
       productId: this.$route.params.id,
+      green_tag: GreenTag,
     };
   },
   computed: {

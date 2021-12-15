@@ -73,12 +73,13 @@
 @import "../assets/scss/_style.scss";
 
 .navbar {
-  background-color: $body-bg;
+  background-color: #fff;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  position: sticky;
+  position: fixed;
   top: 0px;
+  width: 100%;
   z-index: 2;
   padding: 0px $margin-side__navigation;
   // filter: drop-shadow(0 1px 3px rgba(0,0,0,0.1));
