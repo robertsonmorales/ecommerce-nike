@@ -1,9 +1,15 @@
 @import "_variable";
 
-@mixin flexCenter($content){
+@mixin flexCenter($content, $direction : row){
 	display: flex;
     align-items: center;
     justify-content: $content;
+
+    @if $direction != row{
+        flex-direction: column;
+    }else{
+        flex-direction: row;
+    }
 }
 
 @mixin discounted{
@@ -17,5 +23,5 @@
 
 @mixin bootstrapBoxShadow($color){
     border: 1px solid unquote($color + "77");
-    box-shadow: 0 0 0px 4px unquote($color + "55");
+    box-shadow: 0 0 0px 3px unquote($color + "55");
 }

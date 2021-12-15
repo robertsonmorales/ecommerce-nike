@@ -1,7 +1,7 @@
 <template>
   <div class="product-tag" v-show="discount != ''">
     <div class="tag-wrapper">
-      <img class="tag" :src="tag" alt="tag" />
+      <img class="tag" :src="tag" alt="tag" width="100" height="24" />
 
       <span class="product-label">
         <tag-icon size="1x" class="tag-icon"></tag-icon>
@@ -13,8 +13,8 @@
 
 <style lang="scss">
 .product-tag {
-  position: absolute;
-  z-index: 1;
+  // position: absolute;
+  z-index: 2;
 
   .tag-wrapper {
     display: flex;
@@ -22,24 +22,25 @@
     position: relative;
     // overflow: hidden;
 
-    img.tag {
-      filter: drop-shadow(1px 1px 5px rgba(0, 0, 0, 0.15));
-    }
+    // img.tag {
+    //   filter: drop-shadow(1px 1px 5px rgba(0, 0, 0, 0.15));
+    // }
 
     .product-label {
       display: flex;
       align-items: center;
       position: absolute;
-      left: 10px;
+      left: 5px;
       color: #fff;
 
       .tag-icon {
-        margin-right: 10px;
+        margin-right: 5px;
+        font-size: 0.9em;
       }
 
       span {
-        font-size: 0.9em;
-        font-weight: 500;
+        font-size: 0.8em;
+        // font-weight: 500;
       }
     }
   }
