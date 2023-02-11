@@ -12,7 +12,7 @@
   "dependencies": {
     "axios": "^0.24.0",
     "core-js": "^3.6.5",
-    "json-server": "^0.17.0",
+    "json-server": "^0.17.1",
     "vue": "^2.6.11",
     "vue-feather-icons": "^5.1.0",
     "vue-router": "^3.2.0",
